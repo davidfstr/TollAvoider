@@ -11,8 +11,8 @@
 		6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6F1473202F00F8C96F /* Foundation.framework */; };
 		6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD711473202F00F8C96F /* CoreGraphics.framework */; };
 		6997BD781473202F00F8C96F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6997BD761473202F00F8C96F /* InfoPlist.strings */; };
-		6997BD7A1473202F00F8C96F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997BD791473202F00F8C96F /* main.m */; };
 		6997BD7E1473202F00F8C96F /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997BD7D1473202F00F8C96F /* TAAppDelegate.m */; };
+		6997BDBA147329F400F8C96F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997BDB9147329F400F8C96F /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,10 +22,10 @@
 		6997BD711473202F00F8C96F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6997BD751473202F00F8C96F /* TollAvoider-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TollAvoider-Info.plist"; sourceTree = "<group>"; };
 		6997BD771473202F00F8C96F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6997BD791473202F00F8C96F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6997BD7B1473202F00F8C96F /* TollAvoider-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TollAvoider-Prefix.pch"; sourceTree = "<group>"; };
 		6997BD7C1473202F00F8C96F /* TAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
 		6997BD7D1473202F00F8C96F /* TAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
+		6997BDB9147329F400F8C96F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +45,7 @@
 		6997BD5E1473202F00F8C96F = {
 			isa = PBXGroup;
 			children = (
+				6997BDB8147329F400F8C96F /* Other Sources */,
 				6997BD731473202F00F8C96F /* TollAvoider */,
 				6997BD6C1473202F00F8C96F /* Frameworks */,
 				6997BD6A1473202F00F8C96F /* Products */,
@@ -84,10 +85,17 @@
 			children = (
 				6997BD751473202F00F8C96F /* TollAvoider-Info.plist */,
 				6997BD761473202F00F8C96F /* InfoPlist.strings */,
-				6997BD791473202F00F8C96F /* main.m */,
 				6997BD7B1473202F00F8C96F /* TollAvoider-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6997BDB8147329F400F8C96F /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				6997BDB9147329F400F8C96F /* main.m */,
+			);
+			path = "Other Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,8 +159,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6997BD7A1473202F00F8C96F /* main.m in Sources */,
 				6997BD7E1473202F00F8C96F /* TAAppDelegate.m in Sources */,
+				6997BDBA147329F400F8C96F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +262,7 @@
 				6997BD831473202F00F8C96F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
