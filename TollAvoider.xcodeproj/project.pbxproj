@@ -13,6 +13,7 @@
 		6997BD781473202F00F8C96F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6997BD761473202F00F8C96F /* InfoPlist.strings */; };
 		6997BD7E1473202F00F8C96F /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997BD7D1473202F00F8C96F /* TAAppDelegate.m */; };
 		6997BDBA147329F400F8C96F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997BDB9147329F400F8C96F /* main.m */; };
+		6997BDBE14732B6C00F8C96F /* TollAvoider-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6997BDBD14732B6C00F8C96F /* TollAvoider-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +21,12 @@
 		6997BD6D1473202F00F8C96F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6997BD6F1473202F00F8C96F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6997BD711473202F00F8C96F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		6997BD751473202F00F8C96F /* TollAvoider-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TollAvoider-Info.plist"; sourceTree = "<group>"; };
 		6997BD771473202F00F8C96F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6997BD7C1473202F00F8C96F /* TAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
 		6997BD7D1473202F00F8C96F /* TAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
 		6997BDB9147329F400F8C96F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6997BDBB14732A7000F8C96F /* TollAvoider-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TollAvoider-Prefix.pch"; sourceTree = "<group>"; };
+		6997BDBD14732B6C00F8C96F /* TollAvoider-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TollAvoider-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				6997BDB8147329F400F8C96F /* Other Sources */,
+				6997BDBC14732B6C00F8C96F /* Supporting Files */,
 				6997BD731473202F00F8C96F /* TollAvoider */,
 				6997BD6C1473202F00F8C96F /* Frameworks */,
 				6997BD6A1473202F00F8C96F /* Products */,
@@ -83,7 +85,6 @@
 		6997BD741473202F00F8C96F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6997BD751473202F00F8C96F /* TollAvoider-Info.plist */,
 				6997BD761473202F00F8C96F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -96,6 +97,14 @@
 				6997BDBB14732A7000F8C96F /* TollAvoider-Prefix.pch */,
 			);
 			path = "Other Sources";
+			sourceTree = "<group>";
+		};
+		6997BDBC14732B6C00F8C96F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6997BDBD14732B6C00F8C96F /* TollAvoider-Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6997BD781473202F00F8C96F /* InfoPlist.strings in Resources */,
+				6997BDBE14732B6C00F8C96F /* TollAvoider-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +236,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Other Sources/TollAvoider-Prefix.pch";
-				INFOPLIST_FILE = "TollAvoider/TollAvoider-Info.plist";
+				INFOPLIST_FILE = "Supporting Files/TollAvoider-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -237,7 +247,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Other Sources/TollAvoider-Prefix.pch";
-				INFOPLIST_FILE = "TollAvoider/TollAvoider-Info.plist";
+				INFOPLIST_FILE = "Supporting Files/TollAvoider-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
