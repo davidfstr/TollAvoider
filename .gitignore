@@ -1,0 +1,8 @@
+# .xcodeproj Personal Settings
+*.pbxuser
+*.mode1v3
+*.perspectivev3
+*.xcuserdatad
+
+# OS X
+.DS_Store

@@ -1,0 +1,261 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6D1473202F00F8C96F /* UIKit.framework */; };
+		6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6F1473202F00F8C96F /* Foundation.framework */; };
+		6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD711473202F00F8C96F /* CoreGraphics.framework */; };
+		6997BD781473202F00F8C96F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6997BD761473202F00F8C96F /* InfoPlist.strings */; };
+		6997BD7A1473202F00F8C96F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997BD791473202F00F8C96F /* main.m */; };
+		6997BD7E1473202F00F8C96F /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997BD7D1473202F00F8C96F /* TAAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6997BD691473202F00F8C96F /* TollAvoider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TollAvoider.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6997BD6D1473202F00F8C96F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6997BD6F1473202F00F8C96F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6997BD711473202F00F8C96F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6997BD751473202F00F8C96F /* TollAvoider-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TollAvoider-Info.plist"; sourceTree = "<group>"; };
+		6997BD771473202F00F8C96F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6997BD791473202F00F8C96F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6997BD7B1473202F00F8C96F /* TollAvoider-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TollAvoider-Prefix.pch"; sourceTree = "<group>"; };
+		6997BD7C1473202F00F8C96F /* TAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
+		6997BD7D1473202F00F8C96F /* TAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6997BD661473202F00F8C96F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */,
+				6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */,
+				6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6997BD5E1473202F00F8C96F = {
+			isa = PBXGroup;
+			children = (
+				6997BD731473202F00F8C96F /* TollAvoider */,
+				6997BD6C1473202F00F8C96F /* Frameworks */,
+				6997BD6A1473202F00F8C96F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6997BD6A1473202F00F8C96F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6997BD691473202F00F8C96F /* TollAvoider.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6997BD6C1473202F00F8C96F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6997BD6D1473202F00F8C96F /* UIKit.framework */,
+				6997BD6F1473202F00F8C96F /* Foundation.framework */,
+				6997BD711473202F00F8C96F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6997BD731473202F00F8C96F /* TollAvoider */ = {
+			isa = PBXGroup;
+			children = (
+				6997BD7C1473202F00F8C96F /* TAAppDelegate.h */,
+				6997BD7D1473202F00F8C96F /* TAAppDelegate.m */,
+				6997BD741473202F00F8C96F /* Supporting Files */,
+			);
+			path = TollAvoider;
+			sourceTree = "<group>";
+		};
+		6997BD741473202F00F8C96F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6997BD751473202F00F8C96F /* TollAvoider-Info.plist */,
+				6997BD761473202F00F8C96F /* InfoPlist.strings */,
+				6997BD791473202F00F8C96F /* main.m */,
+				6997BD7B1473202F00F8C96F /* TollAvoider-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6997BD681473202F00F8C96F /* TollAvoider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6997BD811473202F00F8C96F /* Build configuration list for PBXNativeTarget "TollAvoider" */;
+			buildPhases = (
+				6997BD651473202F00F8C96F /* Sources */,
+				6997BD661473202F00F8C96F /* Frameworks */,
+				6997BD671473202F00F8C96F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TollAvoider;
+			productName = TollAvoider;
+			productReference = 6997BD691473202F00F8C96F /* TollAvoider.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6997BD601473202F00F8C96F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 6997BD631473202F00F8C96F /* Build configuration list for PBXProject "TollAvoider" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6997BD5E1473202F00F8C96F;
+			productRefGroup = 6997BD6A1473202F00F8C96F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6997BD681473202F00F8C96F /* TollAvoider */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6997BD671473202F00F8C96F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6997BD781473202F00F8C96F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6997BD651473202F00F8C96F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6997BD7A1473202F00F8C96F /* main.m in Sources */,
+				6997BD7E1473202F00F8C96F /* TAAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6997BD761473202F00F8C96F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6997BD771473202F00F8C96F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6997BD7F1473202F00F8C96F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6997BD801473202F00F8C96F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6997BD821473202F00F8C96F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TollAvoider/TollAvoider-Prefix.pch";
+				INFOPLIST_FILE = "TollAvoider/TollAvoider-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6997BD831473202F00F8C96F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TollAvoider/TollAvoider-Prefix.pch";
+				INFOPLIST_FILE = "TollAvoider/TollAvoider-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6997BD631473202F00F8C96F /* Build configuration list for PBXProject "TollAvoider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6997BD7F1473202F00F8C96F /* Debug */,
+				6997BD801473202F00F8C96F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6997BD811473202F00F8C96F /* Build configuration list for PBXNativeTarget "TollAvoider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6997BD821473202F00F8C96F /* Debug */,
+				6997BD831473202F00F8C96F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6997BD601473202F00F8C96F /* Project object */;
+}
