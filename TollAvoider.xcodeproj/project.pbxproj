@@ -10,10 +10,9 @@
 		6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6D1473202F00F8C96F /* UIKit.framework */; };
 		6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6F1473202F00F8C96F /* Foundation.framework */; };
 		6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD711473202F00F8C96F /* CoreGraphics.framework */; };
-		6997BD7E1473202F00F8C96F /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997BD7D1473202F00F8C96F /* TAAppDelegate.m */; };
 		6997BDBA147329F400F8C96F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997BDB9147329F400F8C96F /* main.m */; };
-		6997BDBE14732B6C00F8C96F /* TollAvoider-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6997BDBD14732B6C00F8C96F /* TollAvoider-Info.plist */; };
 		6997BDC714732BD700F8C96F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6997BDC514732BD700F8C96F /* InfoPlist.strings */; };
+		6997BDCF14732C7B00F8C96F /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997BDCB14732C7B00F8C96F /* TAAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,12 +20,12 @@
 		6997BD6D1473202F00F8C96F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6997BD6F1473202F00F8C96F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6997BD711473202F00F8C96F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		6997BD7C1473202F00F8C96F /* TAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
-		6997BD7D1473202F00F8C96F /* TAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
 		6997BDB9147329F400F8C96F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6997BDBB14732A7000F8C96F /* TollAvoider-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TollAvoider-Prefix.pch"; sourceTree = "<group>"; };
 		6997BDBD14732B6C00F8C96F /* TollAvoider-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TollAvoider-Info.plist"; sourceTree = "<group>"; };
 		6997BDC614732BD700F8C96F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		6997BDCA14732C7B00F8C96F /* TAAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
+		6997BDCB14732C7B00F8C96F /* TAAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,9 +45,9 @@
 		6997BD5E1473202F00F8C96F = {
 			isa = PBXGroup;
 			children = (
+				6997BDC814732C7B00F8C96F /* Classes */,
 				6997BDB8147329F400F8C96F /* Other Sources */,
 				6997BDBC14732B6C00F8C96F /* Supporting Files */,
-				6997BD731473202F00F8C96F /* TollAvoider */,
 				6997BD6C1473202F00F8C96F /* Frameworks */,
 				6997BD6A1473202F00F8C96F /* Products */,
 			);
@@ -70,15 +69,6 @@
 				6997BD711473202F00F8C96F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6997BD731473202F00F8C96F /* TollAvoider */ = {
-			isa = PBXGroup;
-			children = (
-				6997BD7C1473202F00F8C96F /* TAAppDelegate.h */,
-				6997BD7D1473202F00F8C96F /* TAAppDelegate.m */,
-			);
-			path = TollAvoider;
 			sourceTree = "<group>";
 		};
 		6997BDB8147329F400F8C96F /* Other Sources */ = {
@@ -105,6 +95,47 @@
 				6997BDC514732BD700F8C96F /* InfoPlist.strings */,
 			);
 			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		6997BDC814732C7B00F8C96F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6997BDC914732C7B00F8C96F /* Application Delegate */,
+				6997BDCC14732C7B00F8C96F /* Model */,
+				6997BDCD14732C7B00F8C96F /* Utility Classes */,
+				6997BDCE14732C7B00F8C96F /* View Controllers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		6997BDC914732C7B00F8C96F /* Application Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				6997BDCA14732C7B00F8C96F /* TAAppDelegate.h */,
+				6997BDCB14732C7B00F8C96F /* TAAppDelegate.m */,
+			);
+			path = "Application Delegate";
+			sourceTree = "<group>";
+		};
+		6997BDCC14732C7B00F8C96F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6997BDCD14732C7B00F8C96F /* Utility Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Utility Classes";
+			sourceTree = "<group>";
+		};
+		6997BDCE14732C7B00F8C96F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +188,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6997BDBE14732B6C00F8C96F /* TollAvoider-Info.plist in Resources */,
 				6997BDC714732BD700F8C96F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,8 +199,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6997BD7E1473202F00F8C96F /* TAAppDelegate.m in Sources */,
 				6997BDBA147329F400F8C96F /* main.m in Sources */,
+				6997BDCF14732C7B00F8C96F /* TAAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
