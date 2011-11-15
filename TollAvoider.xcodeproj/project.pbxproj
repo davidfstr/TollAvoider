@@ -46,7 +46,9 @@
 			isa = PBXGroup;
 			children = (
 				6997BDC814732C7B00F8C96F /* Classes */,
+				6997BDD114732D5400F8C96F /* Libraries */,
 				6997BDB8147329F400F8C96F /* Other Sources */,
+				6997BDD014732D3D00F8C96F /* Resources */,
 				6997BDBC14732B6C00F8C96F /* Supporting Files */,
 				6997BD6C1473202F00F8C96F /* Frameworks */,
 				6997BD6A1473202F00F8C96F /* Products */,
@@ -136,6 +138,20 @@
 			children = (
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		6997BDD014732D3D00F8C96F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6997BDD114732D5400F8C96F /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
