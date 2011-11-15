@@ -22,10 +22,10 @@
 		6997BD711473202F00F8C96F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6997BD751473202F00F8C96F /* TollAvoider-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TollAvoider-Info.plist"; sourceTree = "<group>"; };
 		6997BD771473202F00F8C96F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6997BD7B1473202F00F8C96F /* TollAvoider-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TollAvoider-Prefix.pch"; sourceTree = "<group>"; };
 		6997BD7C1473202F00F8C96F /* TAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
 		6997BD7D1473202F00F8C96F /* TAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
 		6997BDB9147329F400F8C96F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6997BDBB14732A7000F8C96F /* TollAvoider-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TollAvoider-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,6 @@
 			children = (
 				6997BD751473202F00F8C96F /* TollAvoider-Info.plist */,
 				6997BD761473202F00F8C96F /* InfoPlist.strings */,
-				6997BD7B1473202F00F8C96F /* TollAvoider-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -94,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				6997BDB9147329F400F8C96F /* main.m */,
+				6997BDBB14732A7000F8C96F /* TollAvoider-Prefix.pch */,
 			);
 			path = "Other Sources";
 			sourceTree = "<group>";
@@ -225,7 +225,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TollAvoider/TollAvoider-Prefix.pch";
+				GCC_PREFIX_HEADER = "Other Sources/TollAvoider-Prefix.pch";
 				INFOPLIST_FILE = "TollAvoider/TollAvoider-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -236,7 +236,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TollAvoider/TollAvoider-Prefix.pch";
+				GCC_PREFIX_HEADER = "Other Sources/TollAvoider-Prefix.pch";
 				INFOPLIST_FILE = "TollAvoider/TollAvoider-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
