@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TAAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface TAAppDelegate : UIResponder <UIApplicationDelegate> {
+    IBOutlet UIWindow *window;
+}
 
 @end
