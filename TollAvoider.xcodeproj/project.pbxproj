@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		695F2A741475A27D007EBA17 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 695F2A731475A27D007EBA17 /* MainWindow.xib */; };
+		695F2A791475B07B007EBA17 /* TASearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F2A771475B07B007EBA17 /* TASearchViewController.m */; };
+		695F2A7A1475B07B007EBA17 /* TASearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 695F2A781475B07B007EBA17 /* TASearchViewController.xib */; };
 		6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6D1473202F00F8C96F /* UIKit.framework */; };
 		6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6F1473202F00F8C96F /* Foundation.framework */; };
 		6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD711473202F00F8C96F /* CoreGraphics.framework */; };
@@ -18,6 +20,9 @@
 
 /* Begin PBXFileReference section */
 		695F2A731475A27D007EBA17 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		695F2A761475B07B007EBA17 /* TASearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASearchViewController.h; sourceTree = "<group>"; };
+		695F2A771475B07B007EBA17 /* TASearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASearchViewController.m; sourceTree = "<group>"; };
+		695F2A781475B07B007EBA17 /* TASearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TASearchViewController.xib; sourceTree = "<group>"; };
 		6997BD691473202F00F8C96F /* TollAvoider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TollAvoider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6997BD6D1473202F00F8C96F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6997BD6F1473202F00F8C96F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -139,6 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				695F2A731475A27D007EBA17 /* MainWindow.xib */,
+				695F2A761475B07B007EBA17 /* TASearchViewController.h */,
+				695F2A771475B07B007EBA17 /* TASearchViewController.m */,
+				695F2A781475B07B007EBA17 /* TASearchViewController.xib */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -209,6 +217,7 @@
 			files = (
 				6997BDC714732BD700F8C96F /* InfoPlist.strings in Resources */,
 				695F2A741475A27D007EBA17 /* MainWindow.xib in Resources */,
+				695F2A7A1475B07B007EBA17 /* TASearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +230,7 @@
 			files = (
 				6997BDBA147329F400F8C96F /* main.m in Sources */,
 				6997BDCF14732C7B00F8C96F /* TAAppDelegate.m in Sources */,
+				695F2A791475B07B007EBA17 /* TASearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
