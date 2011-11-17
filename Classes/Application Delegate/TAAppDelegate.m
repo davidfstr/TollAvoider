@@ -14,15 +14,18 @@
 
 - (void)dealloc {
     [window release];
+    [navController release];
     [super dealloc];
 }
 
 #pragma mark - Application Lifecycle
 
+/**
+ * Invoked after main NIB loaded and app has finished launching.
+ */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    window.backgroundColor = [UIColor whiteColor];
+    [window addSubview:navController.view];
     [window makeKeyAndVisible];
     
     return YES;

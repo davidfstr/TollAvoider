@@ -10,6 +10,7 @@
 
 @interface TAAppDelegate : UIResponder <UIApplicationDelegate> {
     IBOutlet UIWindow *window;
+    IBOutlet UINavigationController *navController;
 }
 
 @end
