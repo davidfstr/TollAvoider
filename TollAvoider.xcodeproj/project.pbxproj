@@ -11,6 +11,8 @@
 		695F2A791475B07B007EBA17 /* TASearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F2A771475B07B007EBA17 /* TASearchViewController.m */; };
 		695F2A7A1475B07B007EBA17 /* TASearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 695F2A781475B07B007EBA17 /* TASearchViewController.xib */; };
 		695F2A811475B248007EBA17 /* Search Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 695F2A7F1475B248007EBA17 /* Search Background@2x.png */; };
+		695F2A8C1475C8CA007EBA17 /* TAUserLocationTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F2A8B1475C8CA007EBA17 /* TAUserLocationTracking.m */; };
+		695F2A8F1475CBFF007EBA17 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 695F2A8E1475CBFF007EBA17 /* CoreLocation.framework */; };
 		6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6D1473202F00F8C96F /* UIKit.framework */; };
 		6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6F1473202F00F8C96F /* Foundation.framework */; };
 		6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD711473202F00F8C96F /* CoreGraphics.framework */; };
@@ -25,6 +27,9 @@
 		695F2A771475B07B007EBA17 /* TASearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASearchViewController.m; sourceTree = "<group>"; };
 		695F2A781475B07B007EBA17 /* TASearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TASearchViewController.xib; sourceTree = "<group>"; };
 		695F2A7F1475B248007EBA17 /* Search Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Background@2x.png"; sourceTree = "<group>"; };
+		695F2A8A1475C8CA007EBA17 /* TAUserLocationTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAUserLocationTracking.h; sourceTree = "<group>"; };
+		695F2A8B1475C8CA007EBA17 /* TAUserLocationTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAUserLocationTracking.m; sourceTree = "<group>"; };
+		695F2A8E1475CBFF007EBA17 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6997BD691473202F00F8C96F /* TollAvoider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TollAvoider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6997BD6D1473202F00F8C96F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6997BD6F1473202F00F8C96F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -42,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695F2A8F1475CBFF007EBA17 /* CoreLocation.framework in Frameworks */,
 				6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */,
 				6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */,
 				6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */,
@@ -102,6 +108,7 @@
 				6997BD6D1473202F00F8C96F /* UIKit.framework */,
 				6997BD6F1473202F00F8C96F /* Foundation.framework */,
 				6997BD711473202F00F8C96F /* CoreGraphics.framework */,
+				695F2A8E1475CBFF007EBA17 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -155,6 +162,8 @@
 		6997BDCC14732C7B00F8C96F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				695F2A8A1475C8CA007EBA17 /* TAUserLocationTracking.h */,
+				695F2A8B1475C8CA007EBA17 /* TAUserLocationTracking.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,6 +268,7 @@
 				6997BDBA147329F400F8C96F /* main.m in Sources */,
 				6997BDCF14732C7B00F8C96F /* TAAppDelegate.m in Sources */,
 				695F2A791475B07B007EBA17 /* TASearchViewController.m in Sources */,
+				695F2A8C1475C8CA007EBA17 /* TAUserLocationTracking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

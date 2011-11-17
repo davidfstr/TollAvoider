@@ -7,6 +7,7 @@
 //
 
 #import "TAAppDelegate.h"
+#import "TAUserLocationTracking.h"
 
 @implementation TAAppDelegate
 
@@ -25,6 +26,10 @@
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Initialize subsystems
+    [[TAUserLocationTracking instance] initialize];
+    
+    // Configure and show main window
     [window addSubview:navController.view];
     [window makeKeyAndVisible];
     
