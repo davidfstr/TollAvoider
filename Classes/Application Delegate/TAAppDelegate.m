@@ -21,8 +21,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     // Override point for customization after application launch.
     window.backgroundColor = [UIColor whiteColor];
     [window makeKeyAndVisible];

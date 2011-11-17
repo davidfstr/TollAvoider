@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		695F2A741475A27D007EBA17 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 695F2A731475A27D007EBA17 /* MainWindow.xib */; };
 		6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6D1473202F00F8C96F /* UIKit.framework */; };
 		6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6F1473202F00F8C96F /* Foundation.framework */; };
 		6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD711473202F00F8C96F /* CoreGraphics.framework */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		695F2A731475A27D007EBA17 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		6997BD691473202F00F8C96F /* TollAvoider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TollAvoider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6997BD6D1473202F00F8C96F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6997BD6F1473202F00F8C96F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -136,6 +138,7 @@
 		6997BDCE14732C7B00F8C96F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				695F2A731475A27D007EBA17 /* MainWindow.xib */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6997BDC714732BD700F8C96F /* InfoPlist.strings in Resources */,
+				695F2A741475A27D007EBA17 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
