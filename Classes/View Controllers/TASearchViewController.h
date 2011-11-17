@@ -10,4 +10,6 @@
 
 @interface TASearchViewController : UIViewController
 
+- (IBAction)parkPlaceButtonTapped:(id)sender;
+
 @end
