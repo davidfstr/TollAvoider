@@ -10,6 +10,7 @@
 
 
 @interface TALocationTracking()
+@property (nonatomic, readwrite) TALocationTrackingStatus status;
 @property (nonatomic, readwrite, retain) CLLocation *lastUserLocation;
 @end
 
@@ -28,7 +29,16 @@
     return instance;
 }
 
+- (id)init {
+    if (self = [super init]) {
+        status = TALocationIdle;
+    }
+    return self;
+}
+
 - (void)initialize {
+    self.status = TALocationIsolating;
+    
     // Start determining current location.
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -39,6 +49,19 @@
 }
 
 #pragma mark - Properties
+
+- (TALocationTrackingStatus)status {
+    return status;
+}
+
+- (void)setStatus:(TALocationTrackingStatus)theStatus {
+    if (status == theStatus) {
+        return;
+    }
+    
+    status = theStatus;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"TALocationTrackingStatusDidChange" object:self];
+}
 
 - (CLLocation *)userLocation {
     return lastUserLocation;
@@ -57,6 +80,7 @@
     }
     
     self.lastUserLocation = newLocation;
+    self.status = TALocationFound;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"TAUserLocationDidChange" object:self];
 }
 
@@ -70,8 +94,10 @@
     } else if (error.code == kCLErrorDenied) {
         // User has denied this application access to location services.
         NSLog(@"*** Location access denied by user.");
+        self.status = TALocationErrorDenied;
     } else {
         NSLog(@"*** Location isolation failed for unknown reason: %d", (int) error.code);
+        self.status = TALocationErrorOther;
     }
 }
 

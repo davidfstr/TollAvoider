@@ -7,12 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TALocationTrackingStatus.h"
 
 @interface TALocationTracking : NSObject <CLLocationManagerDelegate> {
+    TALocationTrackingStatus status;
+    
     CLLocationManager *locationManager;
     CLLocation *lastUserLocation;
 }
 
+/** The status of the search for the user's location. */
+@property (nonatomic, readonly) TALocationTrackingStatus status;
 /**
  * The current location of the user, or nil if unknown.
  * Changes over time.
