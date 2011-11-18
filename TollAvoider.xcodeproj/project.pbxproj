@@ -11,16 +11,16 @@
 		695F2A791475B07B007EBA17 /* TASearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F2A771475B07B007EBA17 /* TASearchViewController.m */; };
 		695F2A7A1475B07B007EBA17 /* TASearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 695F2A781475B07B007EBA17 /* TASearchViewController.xib */; };
 		695F2A811475B248007EBA17 /* Search Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 695F2A7F1475B248007EBA17 /* Search Background@2x.png */; };
-		695F2A8C1475C8CA007EBA17 /* TAUserLocationTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F2A8B1475C8CA007EBA17 /* TAUserLocationTracking.m */; };
+		695F2A8C1475C8CA007EBA17 /* TALocationTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F2A8B1475C8CA007EBA17 /* TALocationTracking.m */; };
 		695F2A8F1475CBFF007EBA17 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 695F2A8E1475CBFF007EBA17 /* CoreLocation.framework */; };
+		698AF5751475D1DB0032B278 /* TADestinationGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5741475D1DB0032B278 /* TADestinationGeocoder.m */; };
+		698AF57A1475D7130032B278 /* TASearchLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5791475D7130032B278 /* TASearchLocation.m */; };
+		698AF57E1475D8E70032B278 /* PPURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF57C1475D8E70032B278 /* PPURLRequest.m */; };
 		698AF6121475DCD70032B278 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5851475DCD70032B278 /* NSObject+SBJSON.m */; };
 		698AF6131475DCD70032B278 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5871475DCD70032B278 /* NSString+SBJSON.m */; };
 		698AF6141475DCD70032B278 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5891475DCD70032B278 /* SBJsonBase.m */; };
 		698AF6151475DCD70032B278 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF58B1475DCD70032B278 /* SBJsonParser.m */; };
 		698AF6161475DCD70032B278 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF58D1475DCD70032B278 /* SBJsonWriter.m */; };
-		698AF5751475D1DB0032B278 /* TADestinationGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5741475D1DB0032B278 /* TADestinationGeocoder.m */; };
-		698AF57A1475D7130032B278 /* TASearchLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5791475D7130032B278 /* TASearchLocation.m */; };
-		698AF57E1475D8E70032B278 /* PPURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF57C1475D8E70032B278 /* PPURLRequest.m */; };
 		6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6D1473202F00F8C96F /* UIKit.framework */; };
 		6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6F1473202F00F8C96F /* Foundation.framework */; };
 		6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD711473202F00F8C96F /* CoreGraphics.framework */; };
@@ -35,9 +35,17 @@
 		695F2A771475B07B007EBA17 /* TASearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASearchViewController.m; sourceTree = "<group>"; };
 		695F2A781475B07B007EBA17 /* TASearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TASearchViewController.xib; sourceTree = "<group>"; };
 		695F2A7F1475B248007EBA17 /* Search Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Background@2x.png"; sourceTree = "<group>"; };
-		695F2A8A1475C8CA007EBA17 /* TAUserLocationTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAUserLocationTracking.h; sourceTree = "<group>"; };
-		695F2A8B1475C8CA007EBA17 /* TAUserLocationTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAUserLocationTracking.m; sourceTree = "<group>"; };
+		695F2A8A1475C8CA007EBA17 /* TALocationTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TALocationTracking.h; sourceTree = "<group>"; };
+		695F2A8B1475C8CA007EBA17 /* TALocationTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TALocationTracking.m; sourceTree = "<group>"; };
 		695F2A8E1475CBFF007EBA17 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		698AF5731475D1DB0032B278 /* TADestinationGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADestinationGeocoder.h; sourceTree = "<group>"; };
+		698AF5741475D1DB0032B278 /* TADestinationGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADestinationGeocoder.m; sourceTree = "<group>"; };
+		698AF5771475D2060032B278 /* TADestinationGeocoderStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADestinationGeocoderStatus.h; sourceTree = "<group>"; };
+		698AF5781475D7130032B278 /* TASearchLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASearchLocation.h; sourceTree = "<group>"; };
+		698AF5791475D7130032B278 /* TASearchLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASearchLocation.m; sourceTree = "<group>"; };
+		698AF57B1475D8E70032B278 /* PPURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPURLRequest.h; sourceTree = "<group>"; };
+		698AF57C1475D8E70032B278 /* PPURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPURLRequest.m; sourceTree = "<group>"; };
+		698AF57D1475D8E70032B278 /* PPURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPURLRequestDelegate.h; sourceTree = "<group>"; };
 		698AF5831475DCD70032B278 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		698AF5841475DCD70032B278 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		698AF5851475DCD70032B278 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -49,14 +57,6 @@
 		698AF58B1475DCD70032B278 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		698AF58C1475DCD70032B278 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		698AF58D1475DCD70032B278 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		698AF5731475D1DB0032B278 /* TADestinationGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADestinationGeocoder.h; sourceTree = "<group>"; };
-		698AF5741475D1DB0032B278 /* TADestinationGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADestinationGeocoder.m; sourceTree = "<group>"; };
-		698AF5771475D2060032B278 /* TADestinationGeocoderStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADestinationGeocoderStatus.h; sourceTree = "<group>"; };
-		698AF5781475D7130032B278 /* TASearchLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASearchLocation.h; sourceTree = "<group>"; };
-		698AF5791475D7130032B278 /* TASearchLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASearchLocation.m; sourceTree = "<group>"; };
-		698AF57B1475D8E70032B278 /* PPURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPURLRequest.h; sourceTree = "<group>"; };
-		698AF57C1475D8E70032B278 /* PPURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPURLRequest.m; sourceTree = "<group>"; };
-		698AF57D1475D8E70032B278 /* PPURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPURLRequestDelegate.h; sourceTree = "<group>"; };
 		6997BD691473202F00F8C96F /* TollAvoider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TollAvoider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6997BD6D1473202F00F8C96F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6997BD6F1473202F00F8C96F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -215,13 +215,13 @@
 		6997BDCC14732C7B00F8C96F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				695F2A8A1475C8CA007EBA17 /* TAUserLocationTracking.h */,
-				695F2A8B1475C8CA007EBA17 /* TAUserLocationTracking.m */,
 				698AF5731475D1DB0032B278 /* TADestinationGeocoder.h */,
 				698AF5741475D1DB0032B278 /* TADestinationGeocoder.m */,
 				698AF5771475D2060032B278 /* TADestinationGeocoderStatus.h */,
 				698AF5781475D7130032B278 /* TASearchLocation.h */,
 				698AF5791475D7130032B278 /* TASearchLocation.m */,
+				695F2A8A1475C8CA007EBA17 /* TALocationTracking.h */,
+				695F2A8B1475C8CA007EBA17 /* TALocationTracking.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -330,7 +330,7 @@
 				6997BDBA147329F400F8C96F /* main.m in Sources */,
 				6997BDCF14732C7B00F8C96F /* TAAppDelegate.m in Sources */,
 				695F2A791475B07B007EBA17 /* TASearchViewController.m in Sources */,
-				695F2A8C1475C8CA007EBA17 /* TAUserLocationTracking.m in Sources */,
+				695F2A8C1475C8CA007EBA17 /* TALocationTracking.m in Sources */,
 				698AF6121475DCD70032B278 /* NSObject+SBJSON.m in Sources */,
 				698AF6131475DCD70032B278 /* NSString+SBJSON.m in Sources */,
 				698AF6141475DCD70032B278 /* SBJsonBase.m in Sources */,

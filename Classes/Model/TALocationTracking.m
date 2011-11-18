@@ -6,24 +6,24 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "TAUserLocationTracking.h"
+#import "TALocationTracking.h"
 
 
-@interface TAUserLocationTracking()
+@interface TALocationTracking()
 @property (nonatomic, readwrite, retain) CLLocation *lastUserLocation;
 @end
 
 
-@implementation TAUserLocationTracking
+@implementation TALocationTracking
 
 @synthesize lastUserLocation;
 
 #pragma mark - Init
 
-+ (TAUserLocationTracking *)instance {
-    static TAUserLocationTracking *instance = nil;
++ (TALocationTracking *)instance {
+    static TALocationTracking *instance = nil;
     if (!instance) {
-        instance = [[TAUserLocationTracking alloc] init];
+        instance = [[TALocationTracking alloc] init];
     }
     return instance;
 }

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TAUserLocationTracking : NSObject <CLLocationManagerDelegate> {
+@interface TALocationTracking : NSObject <CLLocationManagerDelegate> {
     CLLocationManager *locationManager;
     CLLocation *lastUserLocation;
 }
@@ -21,7 +21,7 @@
  */
 @property (nonatomic, readonly, retain) CLLocation *userLocation;
 
-+ (TAUserLocationTracking *)instance;
++ (TALocationTracking *)instance;
 - (void)initialize;
 
 @end
