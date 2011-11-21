@@ -12,6 +12,7 @@
 #import "TADestinationGeocoder.h"
 #import "TADestinationGeocoderStatus.h"
 #import <QuartzCore/QuartzCore.h>   // for layer.cornerRadius
+#import "TASearchLocation.h"
 
 
 @interface TASearchViewController()
@@ -91,10 +92,32 @@
     TALocationTrackingStatus locationStatus = [TALocationTracking instance].status;
     TADestinationGeocoderStatus geocodeStatus = [TADestinationGeocoder instance].status;
     
-    // TODO: Need to take action when geocoder enters the TAGeocoderGeocodeAmbiguous from some other state:
-    //          Display alert with choices.
-    //          If choice selected, goes to TAGeocoderGeocodeComplete.
-    //          Otherwise if cancel, goes to TAGeocoderNotGeocoding.
+    static BOOL geocoderStateWasAmbiguous = NO;
+    if ((geocodeStatus == TAGeocoderGeocodeAmbiguous) && (!geocoderStateWasAmbiguous)) {
+        // Geocoder just entered the TAGeocoderGeocodeAmbiguous status
+        
+        // Display the possible search locations to the user
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Multiple Locations Found"
+                                                         message:@"Please select a location."
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                               otherButtonTitles:nil]
+                              autorelease];
+        int locationIndex = 0;
+        for (TASearchLocation *loc in [TADestinationGeocoder instance].searchLocations) {
+            if (locationIndex == 4) {
+                // HACK: Can only display first 4 locations without squishing message
+                break;
+            }
+            [alert addButtonWithTitle:loc.address];
+            locationIndex++;
+        }
+        [alert show];
+        
+        geocoderStateWasAmbiguous = YES;
+    } else {
+        geocoderStateWasAmbiguous = NO;
+    }
     
     // TODO: Need to take action when self enters the Complete state from some other state:
     //          Push the Results view controller.
@@ -187,6 +210,20 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
     [self hideSearchInterface];
     [[TADestinationGeocoder instance] startSearchWithQuery:searchBar.text];
+}
+
+#pragma mark - UIAlertViewDelegate Methods
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    TADestinationGeocoder *geocoder = [TADestinationGeocoder instance];
+    
+    TASearchLocation *tappedLocation;
+    if (buttonIndex == alertView.cancelButtonIndex) {
+        tappedLocation = nil;
+    } else {
+        tappedLocation = [geocoder.searchLocations objectAtIndex:buttonIndex];
+    }
+    [geocoder continueSearchWithResolvedLocation:tappedLocation];
 }
 
 @end

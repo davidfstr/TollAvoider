@@ -95,7 +95,7 @@
 
 - (void)continueSearchWithLocation:(TASearchLocation *)location {
     self.searchLocationChosen = location;
-    self.status = TAGeocoderGeocodeComplete;
+    self.status = (location != nil) ? TAGeocoderGeocodeComplete : TAGeocoderNotGeocoding;
 }
 
 #pragma mark - PPURLRequestDelegate Methods

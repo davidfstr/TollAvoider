@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TASearchViewController : UIViewController <UISearchBarDelegate> {
+@interface TASearchViewController : UIViewController <UISearchBarDelegate, UIAlertViewDelegate> {
     IBOutlet UISearchBar *searchBar;
     
     IBOutlet UIView *overlay;
