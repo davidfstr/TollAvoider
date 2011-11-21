@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TASearchViewController : UIViewController
+@interface TASearchViewController : UIViewController <UISearchBarDelegate> {
+    IBOutlet UISearchBar *searchBar;
+}
 
+- (IBAction)backgroundButtonTapped:(id)sender;
 - (IBAction)parkPlaceButtonTapped:(id)sender;
 
 @end

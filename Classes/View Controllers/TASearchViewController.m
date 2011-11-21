@@ -34,6 +34,7 @@
 }
 
 - (void)dealloc {
+    [searchBar release];
     [super dealloc];
 }
 
@@ -43,8 +44,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    // TODO: Hook search bar up to perform searches
-    [[TADestinationGeocoder instance] startSearchWithQuery:@"Seattle, WA"];
+    //// TODO: Hook search bar up to perform searches
+    //[[TADestinationGeocoder instance] startSearchWithQuery:@"Seattle, WA"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,6 +56,8 @@
 }
 
 - (void)viewDidUnload {
+    [searchBar release];
+    searchBar = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -100,10 +103,7 @@
     }
     
     // Searching...
-    BOOL geocoderIdle =
-        (geocodeStatus == TAGeocoderNotGeocoding) || 
-        (geocodeStatus == TAGeocoderGeocodeComplete);
-    if ((locationStatus == TALocationIsolating) && (!geocoderIdle)) {
+    if ((locationStatus == TALocationIsolating) && (geocodeStatus != TAGeocoderNotGeocoding)) {
         [self showLoadingOverlay:@"Searching for your current location..."];
         return;
     }
@@ -137,11 +137,27 @@
     NSLog(@"--- <hidden>");    // TODO: Display in UI
 }
 
+- (void)hideSearchInterface {
+    // Relinquish focus from the search bar and hide the keyboard
+    [searchBar resignFirstResponder];
+}
+
 #pragma mark - Events
+
+- (IBAction)backgroundButtonTapped:(id)sender {
+    [self hideSearchInterface];
+}
 
 - (IBAction)parkPlaceButtonTapped:(id)sender {
     NSString *ppAppStoreUrlString = @"http://itunes.apple.com/us/app/park-place/id366719922?mt=8";
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ppAppStoreUrlString]];
+}
+
+#pragma mark - UISearchBarDelegate Methods
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
+    [self hideSearchInterface];
+    [[TADestinationGeocoder instance] startSearchWithQuery:searchBar.text];
 }
 
 @end
