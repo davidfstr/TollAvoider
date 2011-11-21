@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TAAppDelegate : UIResponder <UIApplicationDelegate> {
+@class TASearchViewController;
+
+@interface TAAppDelegate : UIResponder <UIApplicationDelegate, UINavigationControllerDelegate> {
     IBOutlet UIWindow *window;
     IBOutlet UINavigationController *navController;
+    IBOutlet TASearchViewController *searchViewController;
 }
 
 @end

@@ -13,6 +13,7 @@
 #import "TADestinationGeocoderStatus.h"
 #import <QuartzCore/QuartzCore.h>   // for layer.cornerRadius
 #import "TASearchLocation.h"
+#import "TAResultsViewController.h"
 
 
 @interface TASearchViewController()
@@ -93,7 +94,8 @@
     TADestinationGeocoderStatus geocodeStatus = [TADestinationGeocoder instance].status;
     
     static BOOL geocoderStateWasAmbiguous = NO;
-    if ((geocodeStatus == TAGeocoderGeocodeAmbiguous) && (!geocoderStateWasAmbiguous)) {
+    BOOL geocoderStateIsAmbiguous = (geocodeStatus == TAGeocoderGeocodeAmbiguous);
+    if (geocoderStateIsAmbiguous && (!geocoderStateWasAmbiguous)) {
         // Geocoder just entered the TAGeocoderGeocodeAmbiguous status
         
         // Display the possible search locations to the user
@@ -113,14 +115,19 @@
             locationIndex++;
         }
         [alert show];
-        
-        geocoderStateWasAmbiguous = YES;
-    } else {
-        geocoderStateWasAmbiguous = NO;
     }
+    geocoderStateWasAmbiguous = geocoderStateIsAmbiguous;
     
-    // TODO: Need to take action when self enters the Complete state from some other state:
-    //          Push the Results view controller.
+    static BOOL selfStateWasComplete = NO;
+    BOOL selfStateIsComplete = (locationStatus == TALocationFound) && (geocodeStatus == TAGeocoderGeocodeComplete);
+    if (selfStateIsComplete && (!selfStateWasComplete)) {
+        // Self just entered the complete status
+        
+        // Push the Results view
+        UIViewController *resultsViewController = [[[TAResultsViewController alloc] initWithNibName:@"TAResultsViewController" bundle:nil] autorelease];
+        [self.navigationController pushViewController:resultsViewController animated:YES];
+    }
+    selfStateWasComplete = selfStateIsComplete;
     
     // Location errors
     if (locationStatus == TALocationErrorDenied) {
@@ -155,7 +162,7 @@
     }
     
     // Complete
-    if ((locationStatus == TALocationFound) && (geocodeStatus == TAGeocoderGeocodeComplete)) {
+    if (selfStateIsComplete) {
         [self hideOverlay];
         return;
     }

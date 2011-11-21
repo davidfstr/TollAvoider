@@ -8,6 +8,7 @@
 
 #import "TAAppDelegate.h"
 #import "TALocationTracking.h"
+#import "TASearchViewController.h"
 
 @implementation TAAppDelegate
 
@@ -16,6 +17,7 @@
 - (void)dealloc {
     [window release];
     [navController release];
+    [searchViewController release];
     [super dealloc];
 }
 
@@ -24,8 +26,7 @@
 /**
  * Invoked after main NIB loaded and app has finished launching.
  */
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Initialize subsystems
     [[TALocationTracking instance] initialize];
     
@@ -68,6 +69,16 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+#pragma mark - UINavigationControllerDelegate Methods
+
+- (void)navigationController:(UINavigationController *)theNavigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated
+{
+    BOOL shouldHideBar = (viewController == searchViewController);
+    [navController setNavigationBarHidden:shouldHideBar animated:YES];
 }
 
 @end
