@@ -11,6 +11,7 @@
 #import "TALocationTrackingStatus.h"
 #import "TADestinationGeocoder.h"
 #import "TADestinationGeocoderStatus.h"
+#import <QuartzCore/QuartzCore.h>   // for layer.cornerRadius
 
 
 @interface TASearchViewController()
@@ -25,6 +26,7 @@
 #pragma mark - Init
 
 - (void)awakeFromNib {
+    // Listen for state changes
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateStatus)
                                                  name:@"TALocationTrackingStatusDidChange" object:nil];
@@ -35,6 +37,10 @@
 
 - (void)dealloc {
     [searchBar release];
+    [overlay release];
+    [overlayMessageLabel release];
+    [overlayLoadingSpinner release];
+    [overlayErrorIcon release];
     [super dealloc];
 }
 
@@ -43,6 +49,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    // Round the corners
+    overlay.layer.cornerRadius = 8;
     
     //// TODO: Hook search bar up to perform searches
     //[[TADestinationGeocoder instance] startSearchWithQuery:@"Seattle, WA"];
@@ -58,6 +67,14 @@
 - (void)viewDidUnload {
     [searchBar release];
     searchBar = nil;
+    [overlay release];
+    overlay = nil;
+    [overlayMessageLabel release];
+    overlayMessageLabel = nil;
+    [overlayLoadingSpinner release];
+    overlayLoadingSpinner = nil;
+    [overlayErrorIcon release];
+    overlayErrorIcon = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -126,15 +143,27 @@
 }
 
 - (void)showErrorOverlay:(NSString *)message {
-    NSLog(@"*** %@", message); // TODO: Display in UI
+    NSLog(@"*** %@", message);
+    
+    overlayErrorIcon.hidden = NO;
+    overlayLoadingSpinner.hidden = YES;
+    overlayMessageLabel.text = message;
+    overlay.hidden = NO;
 }
 
 - (void)showLoadingOverlay:(NSString *)message {
-    NSLog(@"--- %@", message); // TODO: Display in UI
+    NSLog(@"--- %@", message);
+    
+    overlayErrorIcon.hidden = YES;
+    overlayLoadingSpinner.hidden = NO;
+    overlayMessageLabel.text = message;
+    overlay.hidden = NO;
 }
 
 - (void)hideOverlay {
-    NSLog(@"--- <hidden>");    // TODO: Display in UI
+    NSLog(@"--- <hidden>");
+    
+    overlay.hidden = YES;
 }
 
 - (void)hideSearchInterface {

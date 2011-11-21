@@ -10,6 +10,11 @@
 
 @interface TASearchViewController : UIViewController <UISearchBarDelegate> {
     IBOutlet UISearchBar *searchBar;
+    
+    IBOutlet UIView *overlay;
+    IBOutlet UILabel *overlayMessageLabel;
+    IBOutlet UIActivityIndicatorView *overlayLoadingSpinner;
+    IBOutlet UIImageView *overlayErrorIcon;
 }
 
 - (IBAction)backgroundButtonTapped:(id)sender;

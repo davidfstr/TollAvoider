@@ -21,6 +21,10 @@
 		698AF6141475DCD70032B278 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5891475DCD70032B278 /* SBJsonBase.m */; };
 		698AF6151475DCD70032B278 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF58B1475DCD70032B278 /* SBJsonParser.m */; };
 		698AF6161475DCD70032B278 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF58D1475DCD70032B278 /* SBJsonWriter.m */; };
+		698AF6C0147AEA580032B278 /* 184-warning-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6BC147AEA580032B278 /* 184-warning-white.png */; };
+		698AF6C1147AEA580032B278 /* 184-warning-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6BD147AEA580032B278 /* 184-warning-white@2x.png */; };
+		698AF6C2147AEA580032B278 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6BE147AEA580032B278 /* 184-warning.png */; };
+		698AF6C3147AEA580032B278 /* 184-warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6BF147AEA580032B278 /* 184-warning@2x.png */; };
 		6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6D1473202F00F8C96F /* UIKit.framework */; };
 		6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6F1473202F00F8C96F /* Foundation.framework */; };
 		6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD711473202F00F8C96F /* CoreGraphics.framework */; };
@@ -58,6 +62,10 @@
 		698AF58C1475DCD70032B278 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		698AF58D1475DCD70032B278 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		698AF6BB1477236D0032B278 /* TALocationTrackingStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TALocationTrackingStatus.h; sourceTree = "<group>"; };
+		698AF6BC147AEA580032B278 /* 184-warning-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "184-warning-white.png"; sourceTree = "<group>"; };
+		698AF6BD147AEA580032B278 /* 184-warning-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "184-warning-white@2x.png"; sourceTree = "<group>"; };
+		698AF6BE147AEA580032B278 /* 184-warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "184-warning.png"; sourceTree = "<group>"; };
+		698AF6BF147AEA580032B278 /* 184-warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "184-warning@2x.png"; sourceTree = "<group>"; };
 		6997BD691473202F00F8C96F /* TollAvoider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TollAvoider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6997BD6D1473202F00F8C96F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6997BD6F1473202F00F8C96F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,6 +112,10 @@
 		695F2A7E1475B248007EBA17 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				698AF6BC147AEA580032B278 /* 184-warning-white.png */,
+				698AF6BD147AEA580032B278 /* 184-warning-white@2x.png */,
+				698AF6BE147AEA580032B278 /* 184-warning.png */,
+				698AF6BF147AEA580032B278 /* 184-warning@2x.png */,
 				695F2A7F1475B248007EBA17 /* Search Background@2x.png */,
 			);
 			path = Search;
@@ -319,6 +331,10 @@
 				695F2A741475A27D007EBA17 /* MainWindow.xib in Resources */,
 				695F2A7A1475B07B007EBA17 /* TASearchViewController.xib in Resources */,
 				695F2A811475B248007EBA17 /* Search Background@2x.png in Resources */,
+				698AF6C0147AEA580032B278 /* 184-warning-white.png in Resources */,
+				698AF6C1147AEA580032B278 /* 184-warning-white@2x.png in Resources */,
+				698AF6C2147AEA580032B278 /* 184-warning.png in Resources */,
+				698AF6C3147AEA580032B278 /* 184-warning@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
