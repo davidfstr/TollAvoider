@@ -228,7 +228,7 @@
     if (buttonIndex == alertView.cancelButtonIndex) {
         tappedLocation = nil;
     } else {
-        tappedLocation = [geocoder.searchLocations objectAtIndex:buttonIndex];
+        tappedLocation = [geocoder.searchLocations objectAtIndex:buttonIndex-1];
     }
     [geocoder continueSearchWithResolvedLocation:tappedLocation];
 }

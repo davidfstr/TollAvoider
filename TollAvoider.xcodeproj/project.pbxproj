@@ -27,6 +27,8 @@
 		698AF6C3147AEA580032B278 /* 184-warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6BF147AEA580032B278 /* 184-warning@2x.png */; };
 		698AF6CF147B09A80032B278 /* TAResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF6CD147B09A80032B278 /* TAResultsViewController.m */; };
 		698AF6D0147B09A80032B278 /* TAResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6CE147B09A80032B278 /* TAResultsViewController.xib */; };
+		698AF6D4147C39610032B278 /* TAResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF6D3147C39610032B278 /* TAResultsTableViewCell.m */; };
+		698AF6D6147C39CA0032B278 /* TAResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6D5147C39CA0032B278 /* TAResultsTableViewCell.xib */; };
 		6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6D1473202F00F8C96F /* UIKit.framework */; };
 		6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6F1473202F00F8C96F /* Foundation.framework */; };
 		6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD711473202F00F8C96F /* CoreGraphics.framework */; };
@@ -71,6 +73,9 @@
 		698AF6CC147B09A80032B278 /* TAResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAResultsViewController.h; sourceTree = "<group>"; };
 		698AF6CD147B09A80032B278 /* TAResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAResultsViewController.m; sourceTree = "<group>"; };
 		698AF6CE147B09A80032B278 /* TAResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TAResultsViewController.xib; sourceTree = "<group>"; };
+		698AF6D2147C39610032B278 /* TAResultsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAResultsTableViewCell.h; sourceTree = "<group>"; };
+		698AF6D3147C39610032B278 /* TAResultsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAResultsTableViewCell.m; sourceTree = "<group>"; };
+		698AF6D5147C39CA0032B278 /* TAResultsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TAResultsTableViewCell.xib; sourceTree = "<group>"; };
 		6997BD691473202F00F8C96F /* TollAvoider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TollAvoider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6997BD6D1473202F00F8C96F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6997BD6F1473202F00F8C96F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -265,6 +270,9 @@
 				698AF6CC147B09A80032B278 /* TAResultsViewController.h */,
 				698AF6CD147B09A80032B278 /* TAResultsViewController.m */,
 				698AF6CE147B09A80032B278 /* TAResultsViewController.xib */,
+				698AF6D2147C39610032B278 /* TAResultsTableViewCell.h */,
+				698AF6D3147C39610032B278 /* TAResultsTableViewCell.m */,
+				698AF6D5147C39CA0032B278 /* TAResultsTableViewCell.xib */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -344,6 +352,7 @@
 				698AF6C2147AEA580032B278 /* 184-warning.png in Resources */,
 				698AF6C3147AEA580032B278 /* 184-warning@2x.png in Resources */,
 				698AF6D0147B09A80032B278 /* TAResultsViewController.xib in Resources */,
+				698AF6D6147C39CA0032B278 /* TAResultsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +376,7 @@
 				698AF57A1475D7130032B278 /* TASearchLocation.m in Sources */,
 				698AF57E1475D8E70032B278 /* PPURLRequest.m in Sources */,
 				698AF6CF147B09A80032B278 /* TAResultsViewController.m in Sources */,
+				698AF6D4147C39610032B278 /* TAResultsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

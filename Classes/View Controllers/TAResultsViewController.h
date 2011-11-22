@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TAResultsViewController : UIViewController
+@class TAResultsTableViewCell;
+
+@interface TAResultsViewController : UIViewController {
+    TAResultsTableViewCell *wa520Cell;
+    TAResultsTableViewCell *i90Cell;
+    TAResultsTableViewCell *directCell;
+    
+    IBOutlet UITableView *tableView;
+}
 
 @end
