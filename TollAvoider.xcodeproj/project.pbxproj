@@ -31,6 +31,9 @@
 		698AF6D6147C39CA0032B278 /* TAResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6D5147C39CA0032B278 /* TAResultsTableViewCell.xib */; };
 		698AF6EA148469E00032B278 /* TADirectionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF6E9148469E00032B278 /* TADirectionsRequest.m */; };
 		698AF6EF14856DE80032B278 /* TADirectionsRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF6EE14856DE80032B278 /* TADirectionsRoute.m */; };
+		698AF6F31485996A0032B278 /* Direct.png in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6F01485996A0032B278 /* Direct.png */; };
+		698AF6F41485996A0032B278 /* I-90.png in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6F11485996A0032B278 /* I-90.png */; };
+		698AF6F51485996A0032B278 /* WA-520.png in Resources */ = {isa = PBXBuildFile; fileRef = 698AF6F21485996A0032B278 /* WA-520.png */; };
 		6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6D1473202F00F8C96F /* UIKit.framework */; };
 		6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD6F1473202F00F8C96F /* Foundation.framework */; };
 		6997BD721473202F00F8C96F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997BD711473202F00F8C96F /* CoreGraphics.framework */; };
@@ -81,8 +84,11 @@
 		698AF6E8148469E00032B278 /* TADirectionsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADirectionsRequest.h; sourceTree = "<group>"; };
 		698AF6E9148469E00032B278 /* TADirectionsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADirectionsRequest.m; sourceTree = "<group>"; };
 		698AF6EC14856ABA0032B278 /* TADirectionsRequestStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADirectionsRequestStatus.h; sourceTree = "<group>"; };
-		698AF6ED14856DE70032B278 /* TADirectionsRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; path = TADirectionsRoute.h; sourceTree = "<group>"; };
+		698AF6ED14856DE70032B278 /* TADirectionsRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADirectionsRoute.h; sourceTree = "<group>"; };
 		698AF6EE14856DE80032B278 /* TADirectionsRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADirectionsRoute.m; sourceTree = "<group>"; };
+		698AF6F01485996A0032B278 /* Direct.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Direct.png; sourceTree = "<group>"; };
+		698AF6F11485996A0032B278 /* I-90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "I-90.png"; sourceTree = "<group>"; };
+		698AF6F21485996A0032B278 /* WA-520.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WA-520.png"; sourceTree = "<group>"; };
 		6997BD691473202F00F8C96F /* TollAvoider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TollAvoider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6997BD6D1473202F00F8C96F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6997BD6F1473202F00F8C96F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -122,6 +128,9 @@
 		695F2A7C1475B248007EBA17 /* Results */ = {
 			isa = PBXGroup;
 			children = (
+				698AF6F01485996A0032B278 /* Direct.png */,
+				698AF6F11485996A0032B278 /* I-90.png */,
+				698AF6F21485996A0032B278 /* WA-520.png */,
 			);
 			path = Results;
 			sourceTree = "<group>";
@@ -365,6 +374,9 @@
 				698AF6C3147AEA580032B278 /* 184-warning@2x.png in Resources */,
 				698AF6D0147B09A80032B278 /* TAResultsViewController.xib in Resources */,
 				698AF6D6147C39CA0032B278 /* TAResultsTableViewCell.xib in Resources */,
+				698AF6F31485996A0032B278 /* Direct.png in Resources */,
+				698AF6F41485996A0032B278 /* I-90.png in Resources */,
+				698AF6F51485996A0032B278 /* WA-520.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

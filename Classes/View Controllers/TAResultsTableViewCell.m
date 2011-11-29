@@ -45,8 +45,24 @@
     self.identifier = theIdentifier;
     self.request = theRequest;
     
+    // Initialize icon
+    switch (theIdentifier) {
+        case TAResultsViewItemIdentifierDirect:
+            self.iconView.image = [UIImage imageNamed:@"Direct.png"];
+            break;
+        case TAResultsViewItemIdentifier520:
+            self.iconView.image = [UIImage imageNamed:@"WA-520.png"];
+            break;
+        case TAResultsViewItemIdentifier90:
+            self.iconView.image = [UIImage imageNamed:@"I-90.png"];
+            break;
+        case TAResultsViewItemIdentifierError:
+            self.iconView.image = [UIImage imageNamed:@"184-warning.png"];
+            break;
+    }
+    
+    // Initialize rest of the view
     [self update];
-    // TODO: Need to initialize icon
 }
 
 - (void)dealloc {
