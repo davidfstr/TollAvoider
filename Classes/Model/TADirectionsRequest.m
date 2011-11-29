@@ -9,12 +9,14 @@
 #import "TADirectionsRequest.h"
 #import "PPURLRequest.h"
 #import "JSON.h"
+#import "TADirectionsRoute.h"
 
 
 @interface TADirectionsRequest()
+@property (nonatomic, readwrite, retain) NSArray *routes;
 - (void)reportError;
 - (void)reportNoRouteFound;
-- (void)reportRoutesFound:(NSArray *)resultRoutes;
+- (void)reportRoutesFound:(NSArray *)theRoutes;
 @end
 
 
@@ -28,6 +30,8 @@
         usesWaypoint = NO;
         waypoint = CLLocationCoordinate2DMake(0, 0);
         destination = theDestination;
+        
+        status = TADirectionsNotRequested;
     }
     return self;
 }
@@ -45,8 +49,28 @@
     return self;
 }
 
+#pragma mark - Properties
+
+- (TADirectionsRequestStatus)status {
+    return status;
+}
+
+- (void)setStatus:(TADirectionsRequestStatus)theStatus {
+    if (theStatus == status) {
+        return;
+    }
+    
+    status = theStatus;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"TADirectionsRequestStatusDidChange" object:self];
+}
+
+@synthesize routes;
+
+#pragma mark - Operations
+
 - (void)startAsynchronous {
     NSLog(@"Searching for directions...");
+    self.status = TADirectionsRequesting;
     
     NSString *urlString;
     if (usesWaypoint) {
@@ -88,18 +112,18 @@
     if (theStatus) {
         if ([theStatus isEqualToString:@"OK"]) {
             // Got results
-            NSArray *routes = [geocodingResult valueForKey:@"routes"];
+            NSArray *routesJson = [geocodingResult valueForKey:@"routes"];
             
-            NSMutableArray *theResultRoutes = [NSMutableArray arrayWithCapacity:routes.count];
-            for (NSDictionary *route in routes) {
-                NSString *summary = [route valueForKey:@"summary"];
+            NSMutableArray *theRoutes = [NSMutableArray arrayWithCapacity:routesJson.count];
+            for (NSDictionary *routeJson in routesJson) {
+                NSString *summary = [routeJson valueForKey:@"summary"];
                 
                 NSInteger durationValueTotal = 0;   // in seconds
                 NSInteger distanceValueTotal = 0;   // in meters
                 
-                //BOOL intersects520 = NO;
-                //BOOL intersects90 = NO;
-                NSArray *legs = [route valueForKey:@"legs"];
+                BOOL intersects520 = NO;
+                BOOL intersects90 = NO;
+                NSArray *legs = [routeJson valueForKey:@"legs"];
                 for (NSDictionary *leg in legs) {
                     NSDictionary *duration = [leg valueForKey:@"duration"];
                     NSInteger durationValue = [[duration valueForKey:@"value"] integerValue];
@@ -118,19 +142,24 @@
                     }
                 }
                 
-                NSString *durationText = [NSString stringWithFormat:@"%d min", (int) (durationValueTotal / 60)];
-                NSString *distanceText = [NSString stringWithFormat:@"%d m", (int) distanceValueTotal];
+                TADirectionsRoute *route = 
+                    [[[TADirectionsRoute alloc] initWithTitle:summary
+                                                durationValue:durationValueTotal
+                                                distanceValue:distanceValueTotal
+                                                intersects520:intersects520
+                                                 intersects90:intersects90]
+                     autorelease];
+                NSString *durationText = route.durationText;
+                NSString *distanceText = route.distanceText;
                 
                 NSLog(@"Found: %@, %@, %@", summary, durationText, distanceText);
-                // TODO: Construct TARouteResult object
-                NSObject *resultRoute = @"BOGUS";
-                [theResultRoutes addObject:resultRoute];
+                [theRoutes addObject:route];
             }
             
-            if (theResultRoutes.count == 0) {
+            if (theRoutes.count == 0) {
                 [self reportNoRouteFound];
-            } else if (theResultRoutes.count == 1) {
-                [self reportRoutesFound:theResultRoutes];
+            } else {
+                [self reportRoutesFound:theRoutes];
             }
         } else if ([theStatus isEqualToString:@"ZERO_RESULTS"]) {
             // No results
@@ -153,15 +182,17 @@
 }
 
 - (void)reportError {
-    // TODO: ...
+    self.status = TADirectionsError;
 }
 
 - (void)reportNoRouteFound {
-    // TODO: ...
+    self.status = TADirectionsZeroResults;
 }
 
-- (void)reportRoutesFound:(NSArray *)resultRoutes {
-    // TODO: ...
+- (void)reportRoutesFound:(NSArray *)theRoutes {
+    self.routes = theRoutes;
+    
+    self.status = TADirectionsOK;
 }
 
 @end
