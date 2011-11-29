@@ -46,6 +46,15 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     locationManager.distanceFilter = kCLDistanceFilterNone;
     [locationManager startUpdatingLocation];
+    
+    // If simulator, must simulate a location notification manually
+#if TARGET_IPHONE_SIMULATOR
+    CLLocation *toLocation = [[[CLLocation alloc] initWithLatitude:47.606
+                                                         longitude:-122.332] autorelease];
+    [self locationManager:locationManager
+      didUpdateToLocation:toLocation
+             fromLocation:nil];
+#endif
 }
 
 #pragma mark - Properties
