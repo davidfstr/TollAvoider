@@ -124,9 +124,10 @@
         // Self just entered the complete status
         
         // Push the Results view
-        TAResultsViewController *resultsViewController = [[[TAResultsViewController alloc] initWithNibName:@"TAResultsViewController" bundle:nil] autorelease];
-        [resultsViewController initializeWithSource:[TALocationTracking instance].userLocation.coordinate
-                                        destination:[TADestinationGeocoder instance].searchLocationChosen.location];
+        TAResultsViewController *resultsViewController =
+            [[[TAResultsViewController alloc] initWithSource:[TALocationTracking instance].userLocation.coordinate
+                                                 destination:[TADestinationGeocoder instance].searchLocationChosen.location]
+             autorelease];
         [self.navigationController pushViewController:resultsViewController animated:YES];
     }
     selfStateWasComplete = selfStateIsComplete;

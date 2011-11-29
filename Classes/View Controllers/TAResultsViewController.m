@@ -14,24 +14,21 @@
 
 #pragma mark - Init
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)initWithSource:(CLLocationCoordinate2D)source
+         destination:(CLLocationCoordinate2D)destination
+{
+    self = [super initWithNibName:@"TAResultsViewController" bundle:nil];
     if (self) {
         wa520Cell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifier520] retain];
         i90Cell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifier90] retain];
         directCell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifierDirect] retain];
+        
+        TADirectionsRequest *directRequest = 
+            [[[TADirectionsRequest alloc] initWithSource:source
+                                             destination:destination] autorelease];
+        [directRequest startAsynchronous];
     }
     return self;
-}
-
-// TODO: Encapsulate the entire construction process
-- (void)initializeWithSource:(CLLocationCoordinate2D)source
-                 destination:(CLLocationCoordinate2D)destination
-{
-    TADirectionsRequest *directRequest = 
-        [[[TADirectionsRequest alloc] initWithSource:source
-                                        destination:destination] autorelease];
-    [directRequest startAsynchronous];
 }
 
 - (void)dealloc {
