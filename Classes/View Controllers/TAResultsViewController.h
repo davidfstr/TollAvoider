@@ -18,4 +18,7 @@
     IBOutlet UITableView *tableView;
 }
 
+- (void)initializeWithSource:(CLLocationCoordinate2D)source
+                 destination:(CLLocationCoordinate2D)destination;
+
 @end

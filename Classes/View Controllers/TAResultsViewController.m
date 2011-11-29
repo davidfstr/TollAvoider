@@ -8,6 +8,7 @@
 
 #import "TAResultsViewController.h"
 #import "TAResultsTableViewCell.h"
+#import "TADirectionsRequest.h"
 
 @implementation TAResultsViewController
 
@@ -21,6 +22,16 @@
         directCell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifierDirect] retain];
     }
     return self;
+}
+
+// TODO: Encapsulate the entire construction process
+- (void)initializeWithSource:(CLLocationCoordinate2D)source
+                 destination:(CLLocationCoordinate2D)destination
+{
+    TADirectionsRequest *directRequest = 
+        [[[TADirectionsRequest alloc] initWithSource:source
+                                        destination:destination] autorelease];
+    [directRequest startAsynchronous];
 }
 
 - (void)dealloc {
