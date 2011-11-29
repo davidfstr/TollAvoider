@@ -54,9 +54,6 @@
     
     // Round the corners
     overlay.layer.cornerRadius = 8;
-    
-    //// TODO: Hook search bar up to perform searches
-    //[[TADestinationGeocoder instance] startSearchWithQuery:@"Seattle, WA"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @class TAResultsTableViewCell;
+@class TADirectionsRequest;
 
 @interface TAResultsViewController : UIViewController {
+    TAResultsTableViewCell *directCell;
     TAResultsTableViewCell *wa520Cell;
     TAResultsTableViewCell *i90Cell;
-    TAResultsTableViewCell *directCell;
+    TAResultsTableViewCell *errorCell;
+    
+    TADirectionsRequest *directRequest;
+    TADirectionsRequest *wa520Request;
+    TADirectionsRequest *i90Request;
     
     IBOutlet UITableView *tableView;
 }
