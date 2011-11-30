@@ -40,6 +40,7 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
     if (self) {
         directRequest = [[TADirectionsRequest alloc] initWithSource:source
                                                         destination:destination];
+        directRequest.alternatives = YES;
         // TODO: If this name-based query breaks in the future, recommend rewriting
         //       to use similar logic as the I-90 coordinate-based queries.
         wa520Request = [[TADirectionsRequest alloc] initWithSource:source

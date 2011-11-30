@@ -69,6 +69,7 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
         usesWaypoint = (theWaypointName != nil);
         waypointName = [theWaypointName retain];
         destination = theDestination;
+        alternatives = NO;
         
         status = TADirectionsNotRequested;
     }
@@ -81,6 +82,8 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
 }
 
 #pragma mark - Properties
+
+@synthesize alternatives;
 
 - (TADirectionsRequestStatus)status {
     return status;
@@ -114,14 +117,16 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
     
     NSString *urlString;
     if (usesWaypoint) {
-        urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%lf,%lf&destination=%lf,%lf&waypoints=%@&alternatives=true&sensor=true",
+        urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%lf,%lf&destination=%lf,%lf&waypoints=%@&alternatives=%@&sensor=true",
                      (double)source.latitude, (double)source.longitude,
                      (double)destination.latitude, (double)destination.longitude,
-                     [waypointName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                     [waypointName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                     alternatives ? @"true" : @"false"];
     } else {
-        urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%lf,%lf&destination=%lf,%lf&alternatives=true&sensor=true",
+        urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%lf,%lf&destination=%lf,%lf&alternatives=%@&sensor=true",
                      (double)source.latitude, (double)source.longitude,
-                     (double)destination.latitude, (double)destination.longitude];
+                     (double)destination.latitude, (double)destination.longitude,
+                     alternatives ? @"true" : @"false"];
     }
     NSURL *url = [NSURL URLWithString:urlString];
     

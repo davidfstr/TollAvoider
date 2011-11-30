@@ -17,10 +17,14 @@
     BOOL usesWaypoint;
     NSString *waypointName;
     CLLocationCoordinate2D destination;
+    BOOL alternatives;
     
     TADirectionsRequestStatus status;
     NSArray *routes;
 }
+
+/** Whether to search for multiple routes, instead of just the best one. Default is NO. */
+@property (nonatomic, readwrite) BOOL alternatives;
 
 /**
  * Status of this request.
