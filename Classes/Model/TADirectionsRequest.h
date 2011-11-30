@@ -15,7 +15,7 @@
 @interface TADirectionsRequest : NSObject <PPURLRequestDelegate> {
     CLLocationCoordinate2D source;
     BOOL usesWaypoint;
-    CLLocationCoordinate2D waypoint;
+    NSString *waypointName;
     CLLocationCoordinate2D destination;
     
     TADirectionsRequestStatus status;
@@ -41,6 +41,11 @@
 
 - (id)initWithSource:(CLLocationCoordinate2D)theSource
             waypoint:(CLLocationCoordinate2D)theWaypoint
+         destination:(CLLocationCoordinate2D)theDestination;
+
+// This is the designated initializer.
+- (id)initWithSource:(CLLocationCoordinate2D)theSource
+        waypointName:(NSString *)theWaypointName
          destination:(CLLocationCoordinate2D)theDestination;
 
 - (void)startAsynchronous;

@@ -35,10 +35,39 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
 - (id)initWithSource:(CLLocationCoordinate2D)theSource
          destination:(CLLocationCoordinate2D)theDestination
 {
+    
+    return [self initWithSource:theSource
+                       waypoint:CLLocationCoordinate2DMake(0, 0)
+                    destination:theDestination];
+}
+
+- (id)initWithSource:(CLLocationCoordinate2D)theSource
+            waypoint:(CLLocationCoordinate2D)theWaypoint
+         destination:(CLLocationCoordinate2D)theDestination
+{
+    NSString *theWaypointName;
+    if ((theWaypoint.latitude != 0) || (theWaypoint.longitude != 0)) {
+        theWaypointName = [NSString stringWithFormat:@"%lf,%lf",
+                        (double)theWaypoint.latitude,
+                        (double)theWaypoint.longitude];
+    } else {
+        theWaypointName = nil;
+    }
+    
+    return [self initWithSource:theSource
+                   waypointName:theWaypointName
+                    destination:theDestination];
+}
+
+- (id)initWithSource:(CLLocationCoordinate2D)theSource
+        waypointName:(NSString *)theWaypointName
+         destination:(CLLocationCoordinate2D)theDestination
+{
     if (self = [super init]) {
         source = theSource;
-        usesWaypoint = NO;
-        waypoint = CLLocationCoordinate2DMake(0, 0);
+        // TODO: Remove this redundant information and update callers
+        usesWaypoint = (theWaypointName != nil);
+        waypointName = [theWaypointName retain];
         destination = theDestination;
         
         status = TADirectionsNotRequested;
@@ -46,17 +75,9 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
     return self;
 }
 
-- (id)initWithSource:(CLLocationCoordinate2D)theSource
-            waypoint:(CLLocationCoordinate2D)theWaypoint
-         destination:(CLLocationCoordinate2D)theDestination
-{
-    if (self = [super init]) {
-        source = theSource;
-        usesWaypoint = YES;
-        waypoint = theWaypoint;
-        destination = theDestination;
-    }
-    return self;
+- (void)dealloc {
+    [waypointName release];
+    [super dealloc];
 }
 
 #pragma mark - Properties
@@ -93,10 +114,10 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
     
     NSString *urlString;
     if (usesWaypoint) {
-        urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%lf,%lf&destination=%lf,%lf&waypoints=%lf,%lf&alternatives=true&sensor=true",
+        urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%lf,%lf&destination=%lf,%lf&waypoints=%@&alternatives=true&sensor=true",
                      (double)source.latitude, (double)source.longitude,
                      (double)destination.latitude, (double)destination.longitude,
-                     (double)waypoint.latitude, (double)waypoint.longitude];
+                     [waypointName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     } else {
         urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%lf,%lf&destination=%lf,%lf&alternatives=true&sensor=true",
                      (double)source.latitude, (double)source.longitude,

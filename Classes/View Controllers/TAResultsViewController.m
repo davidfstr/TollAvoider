@@ -22,7 +22,8 @@
 
 #pragma mark - Init
 
-static CLLocationCoordinate2D WA520_WAYPOINT = (CLLocationCoordinate2D) { 47.640, -122.256 };
+static NSString *WA520_WAYPOINT_NAME = @"WA-520 Bridge, Seattle, WA";
+//static CLLocationCoordinate2D WA520_WAYPOINT = (CLLocationCoordinate2D) { 47.640, -122.256 };
 static CLLocationCoordinate2D I90_WAYPOINT = (CLLocationCoordinate2D) { 47.590, -122.266 };
 
 @synthesize sectionNames;
@@ -35,12 +36,13 @@ static CLLocationCoordinate2D I90_WAYPOINT = (CLLocationCoordinate2D) { 47.590, 
     if (self) {
         directRequest = [[TADirectionsRequest alloc] initWithSource:source
                                                         destination:destination];
-        // TODO: This gives a bizarre result when: Seattle, WA -> Factoria, WA.
-        //       May need to use "WA 520 bridge, Seattle, WA" instead of a coordinate-based waypoint.
-        //       Recommend updating the I-90 waypoint as well.
         wa520Request = [[TADirectionsRequest alloc] initWithSource:source
-                                                          waypoint:WA520_WAYPOINT
+                                                      waypointName:WA520_WAYPOINT_NAME
                                                        destination:destination];
+        // TODO: This gives a bizarre result when: Seattle, WA -> Redmond, WA.
+        //       Name-based waypoints (ex: "I-90 Bridge, Seattle, WA") have no reasonable effect.
+        //       Most likely need to search both the east and west lanes.
+        //       Consider updating the WA-520 search logic to use similar logic, since it is less brittle.
         i90Request = [[TADirectionsRequest alloc] initWithSource:source
                                                         waypoint:I90_WAYPOINT
                                                      destination:destination];
