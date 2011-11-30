@@ -166,11 +166,13 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
                 NSArray *legs = [routeJson valueForKey:@"legs"];
                 for (NSDictionary *leg in legs) {
                     NSDictionary *duration = [leg valueForKey:@"duration"];
-                    NSInteger durationValue = [[duration valueForKey:@"value"] integerValue];
+                    NSNumber *durationValueNumber = [duration valueForKey:@"value"];
+                    NSInteger durationValue = [durationValueNumber integerValue];
                     durationValueTotal += durationValue;
                     
                     NSDictionary *distance = [leg valueForKey:@"distance"];
-                    NSInteger distanceValue = [[distance valueForKey:@"value"] integerValue];
+                    NSNumber *distanceValueNumber = [distance valueForKey:@"value"];
+                    NSInteger distanceValue = [distanceValueNumber integerValue];
                     distanceValueTotal += distanceValue;
                     
                     // Detect whether any steps are intersecting WA-520 or I-90 

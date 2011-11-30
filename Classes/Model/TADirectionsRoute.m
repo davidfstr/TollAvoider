@@ -10,6 +10,8 @@
 
 @implementation TADirectionsRoute
 
+#define MILES_PER_METER 0.000621371192237334
+
 #pragma mark - Init
 
 - (id)initWithTitle:(NSString *)theTitle
@@ -45,7 +47,9 @@
 }
 
 - (NSString *)distanceText {
-    return [NSString stringWithFormat:@"%d m", (int) distanceValue];
+    CGFloat distanceInMeters = distanceValue;
+    CGFloat distanceInMiles = distanceInMeters * MILES_PER_METER;
+    return [NSString stringWithFormat:@"%.1lf mi", (double) distanceInMiles];
 }
 
 @synthesize intersects520;
