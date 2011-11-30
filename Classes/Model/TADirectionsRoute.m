@@ -37,6 +37,9 @@
 
 @synthesize title;
 
+@synthesize durationValue;
+@synthesize distanceValue;
+
 - (NSString *)durationText {
     return [NSString stringWithFormat:@"%d min", (int) (durationValue / 60)];
 }

@@ -19,7 +19,8 @@
     
     TADirectionsRequest *directRequest;
     TADirectionsRequest *wa520Request;
-    TADirectionsRequest *i90Request;
+    TADirectionsRequest *i90eRequest;
+    TADirectionsRequest *i90wRequest;
     
     IBOutlet UITableView *tableView;
 }

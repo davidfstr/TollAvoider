@@ -9,6 +9,7 @@
 #import "TAResultsViewController.h"
 #import "TAResultsTableViewCell.h"
 #import "TADirectionsRequest.h"
+#import "TADirectionsRoute.h"
 
 
 @interface TAResultsViewController()
@@ -23,8 +24,11 @@
 #pragma mark - Init
 
 static NSString *WA520_WAYPOINT_NAME = @"WA-520 Bridge, Seattle, WA";
-//static CLLocationCoordinate2D WA520_WAYPOINT = (CLLocationCoordinate2D) { 47.640, -122.256 };
-static CLLocationCoordinate2D I90_WAYPOINT = (CLLocationCoordinate2D) { 47.590, -122.266 };
+//static CLLocationCoordinate2D WA520E_WAYPOINT = (CLLocationCoordinate2D) { 47.636, -122.256 };
+//static CLLocationCoordinate2D WA520W_WAYPOINT = (CLLocationCoordinate2D) { 47.640, -122.256 };
+
+static CLLocationCoordinate2D I90E_WAYPOINT = (CLLocationCoordinate2D) { 47.588, -122.266 };
+static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590, -122.266 };
 
 @synthesize sectionNames;
 @synthesize sections;
@@ -36,20 +40,23 @@ static CLLocationCoordinate2D I90_WAYPOINT = (CLLocationCoordinate2D) { 47.590, 
     if (self) {
         directRequest = [[TADirectionsRequest alloc] initWithSource:source
                                                         destination:destination];
+        // TODO: If this name-based query breaks in the future, recommend rewriting
+        //       to use similar logic as the I-90 coordinate-based queries.
         wa520Request = [[TADirectionsRequest alloc] initWithSource:source
                                                       waypointName:WA520_WAYPOINT_NAME
                                                        destination:destination];
-        // TODO: This gives a bizarre result when: Seattle, WA -> Redmond, WA.
-        //       Name-based waypoints (ex: "I-90 Bridge, Seattle, WA") have no reasonable effect.
-        //       Most likely need to search both the east and west lanes.
-        //       Consider updating the WA-520 search logic to use similar logic, since it is less brittle.
-        i90Request = [[TADirectionsRequest alloc] initWithSource:source
-                                                        waypoint:I90_WAYPOINT
+        i90eRequest = [[TADirectionsRequest alloc] initWithSource:source
+                                                        waypoint:I90E_WAYPOINT
                                                      destination:destination];
+        i90wRequest = [[TADirectionsRequest alloc] initWithSource:source
+                                                         waypoint:I90W_WAYPOINT
+                                                      destination:destination];
         
         directCell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifierDirect request:directRequest] retain];
         wa520Cell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifier520 request:wa520Request] retain];
-        i90Cell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifier90 request:i90Request] retain];
+        // HACK: Initially associate with the I-90 E request.
+        //       This association will be later revised to I-90 W if necessary.
+        i90Cell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifier90 request:i90eRequest] retain];
         errorCell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifierError request:nil] retain];
         
         [self updateTable];
@@ -62,7 +69,8 @@ static CLLocationCoordinate2D I90_WAYPOINT = (CLLocationCoordinate2D) { 47.590, 
             
             [directRequest startAsynchronous];
             [wa520Request startAsynchronous];
-            [i90Request startAsynchronous];
+            [i90eRequest startAsynchronous];
+            [i90wRequest startAsynchronous];
         }
     }
     return self;
@@ -74,7 +82,8 @@ static CLLocationCoordinate2D I90_WAYPOINT = (CLLocationCoordinate2D) { 47.590, 
     [i90Cell release];
     [directRequest release];
     [wa520Request release];
-    [i90Request release];
+    [i90eRequest release];
+    [i90wRequest release];
     [tableView release];
     [super dealloc];
 }
@@ -158,7 +167,36 @@ static CLLocationCoordinate2D I90_WAYPOINT = (CLLocationCoordinate2D) { 47.590, 
                 }
             }
             
-            // Update all cells
+            // HACK: Update the I-90 cell to display the status of the I-90 request that either:
+            //       (1) has an error (if any)
+            //       (2) is still loading (if any)
+            //       (3) has the shortest route (if both OK)
+            if ((i90eRequest.status == TADirectionsError) || 
+                (i90eRequest.status == TADirectionsZeroResults))
+            {
+                i90Cell.request = i90eRequest;
+            } else if ((i90wRequest.status == TADirectionsError) || 
+                       (i90wRequest.status == TADirectionsZeroResults))
+            {
+                i90Cell.request = i90wRequest;
+            } else if (i90eRequest.status == TADirectionsRequesting) {
+                i90Cell.request = i90eRequest;
+            } else if (i90wRequest.status == TADirectionsRequesting) {
+                i90Cell.request = i90wRequest;
+            } else if ((i90eRequest.status == TADirectionsOK) && 
+                       (i90wRequest.status == TADirectionsOK))
+            {
+                TADirectionsRoute *i90eRoute = [i90eRequest.routes objectAtIndex:0];
+                TADirectionsRoute *i90wRoute = [i90wRequest.routes objectAtIndex:0];
+                
+                if (i90eRoute.distanceValue <= i90wRoute.distanceValue) {
+                    i90Cell.request = i90eRequest;
+                } else {
+                    i90Cell.request = i90wRequest;
+                }
+            }
+            
+            // Update all cells to match the state of their associated request
             for (NSArray *section in self.sections) {
                 for (TAResultsTableViewCell *cell in section) {
                     [cell update];

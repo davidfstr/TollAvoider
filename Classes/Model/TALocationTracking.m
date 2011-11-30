@@ -49,6 +49,8 @@
     
     // If simulator, must simulate a location notification manually
 #if TARGET_IPHONE_SIMULATOR
+    // Seattle, WA: (47.606, -122.332)
+    // Redmond, WA: (47.672, -122.119)
     CLLocation *toLocation = [[[CLLocation alloc] initWithLatitude:47.606
                                                          longitude:-122.332] autorelease];
     [self locationManager:locationManager

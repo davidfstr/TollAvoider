@@ -143,11 +143,12 @@
     
     // TODO: Remove
     /*
-    if (route.intersects520) {
+    if (route.intersects520 && !route.intersects90) {
         label3.text = @"Intersects WA-520";
-    }
-    if (route.intersects90) {
+    } else if (route.intersects90 && !route.intersects520) {
         label3.text = @"Intersects I-90";
+    } else if (route.intersects520 && route.intersects90) {
+        label3.text = @"Intersects WA-520 & I-90";
     }
      */
 }

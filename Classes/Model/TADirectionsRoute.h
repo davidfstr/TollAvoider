@@ -17,6 +17,8 @@
 }
 
 @property (nonatomic, readonly, retain) NSString *title;
+@property (nonatomic, readonly) NSInteger durationValue;    // in seconds
+@property (nonatomic, readonly) NSInteger distanceValue;    // in meters
 @property (nonatomic, readonly, retain) NSString *durationText;
 @property (nonatomic, readonly, retain) NSString *distanceText;
 @property (nonatomic, readonly) BOOL intersects520;
