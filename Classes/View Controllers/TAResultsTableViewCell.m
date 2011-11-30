@@ -78,9 +78,12 @@
 #pragma mark - Operations
 
 - (void)update {
-    // TODO: For the direct cell, need to get the first non-520/non-90 route, if there is one.
-    //       If there is not one, this cell shouldn't even be displaying...
-    TADirectionsRoute *route = [request.routes objectAtIndex:0];
+    TADirectionsRoute *route;
+    if (self.identifier == TAResultsViewItemIdentifierDirect) {
+        route = request.firstNonbridgeRoute;
+    } else {
+        route = [request.routes objectAtIndex:0];
+    }
     
     switch (request.status) {
         case TADirectionsNotRequested:
@@ -113,7 +116,7 @@
             spinner.hidden = YES;
             iconView.hidden = NO;
             label1.text = @"";
-            label2.text = @"Error while searching for route...";
+            label2.text = @"Error finding route...";
             label3.text = @"";
             break;
         }
@@ -137,6 +140,16 @@
             break;
         }
     }
+    
+    // TODO: Remove
+    /*
+    if (route.intersects520) {
+        label3.text = @"Intersects WA-520";
+    }
+    if (route.intersects90) {
+        label3.text = @"Intersects I-90";
+    }
+     */
 }
 
 @end

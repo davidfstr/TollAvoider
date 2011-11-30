@@ -35,6 +35,9 @@ static CLLocationCoordinate2D I90_WAYPOINT = (CLLocationCoordinate2D) { 47.590, 
     if (self) {
         directRequest = [[TADirectionsRequest alloc] initWithSource:source
                                                         destination:destination];
+        // TODO: This gives a bizarre result when: Seattle, WA -> Factoria, WA.
+        //       May need to use "WA 520 bridge, Seattle, WA" instead of a coordinate-based waypoint.
+        //       Recommend updating the I-90 waypoint as well.
         wa520Request = [[TADirectionsRequest alloc] initWithSource:source
                                                           waypoint:WA520_WAYPOINT
                                                        destination:destination];
@@ -120,8 +123,8 @@ static CLLocationCoordinate2D I90_WAYPOINT = (CLLocationCoordinate2D) { 47.590, 
             // TODO: Use alternate view if no 520 toll presently
             displayingError = NO;
             self.sectionNames = [NSArray arrayWithObjects:@"Free", @"Tolled", nil];
-            NSArray *section1 = [NSArray arrayWithObjects:i90Cell, directCell, nil];
-            NSArray *section2 = [NSArray arrayWithObjects:wa520Cell, nil];
+            NSMutableArray *section1 = [NSMutableArray arrayWithObjects:i90Cell, directCell, nil];
+            NSMutableArray *section2 = [NSMutableArray arrayWithObjects:wa520Cell, nil];
             self.sections = [NSArray arrayWithObjects:section1, section2, nil];
             break;
             
@@ -145,10 +148,24 @@ static CLLocationCoordinate2D I90_WAYPOINT = (CLLocationCoordinate2D) { 47.590, 
             errorCell.label3.text = @"";
         }
     } else {
-        for (NSArray *section in self.sections) {
-            for (TAResultsTableViewCell *cell in section) {
-                [cell update];
+        if (directRequest.status == TADirectionsOK) {
+            if (directRequest.firstNonbridgeRoute == nil) {
+                // Remove direct cell
+                for (NSMutableArray *section in self.sections) {
+                    [section removeObject:directCell];
+                }
             }
+            
+            // Update all cells
+            for (NSArray *section in self.sections) {
+                for (TAResultsTableViewCell *cell in section) {
+                    [cell update];
+                }
+            }
+            
+            // TODO: Sort cells by status and distance
+        } else {
+            // Keep all the rows in the loading state
         }
     }
     

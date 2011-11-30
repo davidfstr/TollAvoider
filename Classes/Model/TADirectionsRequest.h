@@ -10,6 +10,8 @@
 #import "PPURLRequestDelegate.h"
 #import "TADirectionsRequestStatus.h"
 
+@class TADirectionsRoute;
+
 @interface TADirectionsRequest : NSObject <PPURLRequestDelegate> {
     CLLocationCoordinate2D source;
     BOOL usesWaypoint;
@@ -29,6 +31,10 @@
  * List of routes found. Only valid in the TADirectionsOK state.
  */
 @property (nonatomic, readonly, retain) NSArray *routes;
+/**
+ * The first non-bridge route result, or nil if no such route.
+ */
+@property (nonatomic, readonly) TADirectionsRoute *firstNonbridgeRoute;
 
 - (id)initWithSource:(CLLocationCoordinate2D)theSource
          destination:(CLLocationCoordinate2D)theDestination;

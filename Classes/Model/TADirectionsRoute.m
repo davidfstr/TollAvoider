@@ -45,4 +45,7 @@
     return [NSString stringWithFormat:@"%d m", (int) distanceValue];
 }
 
+@synthesize intersects520;
+@synthesize intersects90;
+
 @end

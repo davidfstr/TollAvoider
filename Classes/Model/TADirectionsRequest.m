@@ -14,6 +14,11 @@
 
 @interface TADirectionsRequest()
 @property (nonatomic, readwrite, retain) NSArray *routes;
++ (NSArray *)decodePolylinePoints:(NSString *)encoded;
++ (BOOL)lineSegmentsIntersectP1:(CLLocationCoordinate2D)p1
+                             p2:(CLLocationCoordinate2D)p2
+                             p3:(CLLocationCoordinate2D)p3
+                             p4:(CLLocationCoordinate2D)p4;
 - (void)reportError;
 - (void)reportNoRouteFound;
 - (void)reportRoutesFound:(NSArray *)theRoutes;
@@ -21,6 +26,11 @@
 
 
 @implementation TADirectionsRequest
+
+static CLLocationCoordinate2D WA520_PERPENDICULAR_LINE_SEGMENT_P1 = { 47.654057, -122.254143 };
+static CLLocationCoordinate2D WA520_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.625141, -122.264099 };
+static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P1 = { 47.601532, -122.269592 };
+static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -122.269592 };
 
 - (id)initWithSource:(CLLocationCoordinate2D)theSource
          destination:(CLLocationCoordinate2D)theDestination
@@ -65,6 +75,15 @@
 }
 
 @synthesize routes;
+
+- (TADirectionsRoute *)firstNonbridgeRoute {
+    for (TADirectionsRoute *curRoute in self.routes) {
+        if (!curRoute.intersects90 && !curRoute.intersects520) {
+            return curRoute;
+        }
+    }
+    return nil;
+}
 
 #pragma mark - Operations
 
@@ -133,12 +152,36 @@
                     NSInteger distanceValue = [[distance valueForKey:@"value"] integerValue];
                     distanceValueTotal += distanceValue;
                     
+                    // Detect whether any steps are intersecting WA-520 or I-90 
                     NSArray *steps = [leg valueForKey:@"steps"];
                     for (NSDictionary *step in steps) {
-                        //NSDictionary *polyline = [step valueForKey:@"polyline"];
-                        //NSString *polylinePoints = [polyline valueForKey:@"points"];
+                        NSDictionary *polyline = [step valueForKey:@"polyline"];
+                        NSString *polylinePoints = [polyline valueForKey:@"points"];
+                        NSArray *polylinePointsDecoded = 
+                            [TADirectionsRequest decodePolylinePoints:polylinePoints];
                         
-                        // TODO: Decode 'polylinePoints' and update 'intersects520' and 'intersects90'
+                        for (int i=0, n=polylinePointsDecoded.count; i<n-1; i++) {
+                            CLLocation *p1loc = [polylinePointsDecoded objectAtIndex:i];
+                            CLLocation *p2loc = [polylinePointsDecoded objectAtIndex:i+1];
+                            
+                            CLLocationCoordinate2D p1 = p1loc.coordinate;
+                            CLLocationCoordinate2D p2 = p2loc.coordinate;
+                            
+                            if ([TADirectionsRequest lineSegmentsIntersectP1:p1
+                                                                          p2:p2
+                                                                          p3:WA520_PERPENDICULAR_LINE_SEGMENT_P1
+                                                                          p4:WA520_PERPENDICULAR_LINE_SEGMENT_P2])
+                            {
+                                intersects520 = YES;
+                            }
+                            if ([TADirectionsRequest lineSegmentsIntersectP1:p1
+                                                                          p2:p2
+                                                                          p3:I90_PERPENDICULAR_LINE_SEGMENT_P1
+                                                                          p4:I90_PERPENDICULAR_LINE_SEGMENT_P2])
+                            {
+                                intersects90 = YES;
+                            }
+                        }
                     }
                 }
                 
@@ -173,6 +216,84 @@
             [self reportError];
         }
     }
+}
+
+/**
+ * Decodes a polyline to an array of CLLocation coordinates.
+ * 
+ * Algorithm: http://facstaff.unca.edu/mcmcclur/GoogleMaps/EncodePolyline/decode.js
+ */
++ (NSArray *)decodePolylinePoints:(NSString *)encoded {
+    int length = encoded.length;
+    int index = 0;
+    NSMutableArray *array = [NSMutableArray array];
+    int lat = 0;
+    int lng = 0;
+    
+    while (index < length) {
+        int shift = 0;
+        int result = 0;
+        while (1) {
+            int b = [encoded characterAtIndex:index] - 63; index++;
+            result |= (b & 0x1f) << shift;
+            shift += 5;
+            if (!(b >= 0x20)) {
+                break;
+            }
+        }
+        int dlat = ((result & 1) ? ~(result >> 1) : (result >> 1));
+        lat += dlat;
+        
+        shift = 0;
+        result = 0;
+        while (1) {
+            int b = [encoded characterAtIndex:index] - 63; index++;
+            result |= (b & 0x1f) << shift;
+            shift += 5;
+            if (!(b >= 0x20)) {
+                break;
+            }
+        }
+        int dlng = ((result & 1) ? ~(result >> 1) : (result >> 1));
+        lng += dlng;
+        
+        CLLocation *location = [[[CLLocation alloc] initWithLatitude:lat * 1e-5
+                                                           longitude:lng * 1e-5] autorelease];
+        [array addObject:location];
+    }
+    
+    return array;
+}
+
+/**
+ * Returns whether the line segments (p1, p2) and (p3, p4) intersect.
+ * 
+ * Algorithm: http://paulbourke.net/geometry/lineline2d/
+ */
++ (BOOL)lineSegmentsIntersectP1:(CLLocationCoordinate2D)p1
+                             p2:(CLLocationCoordinate2D)p2
+                             p3:(CLLocationCoordinate2D)p3
+                             p4:(CLLocationCoordinate2D)p4
+{
+    CLLocationDegrees x1 = p1.latitude;
+    CLLocationDegrees y1 = p1.longitude;
+    CLLocationDegrees x2 = p2.latitude;
+    CLLocationDegrees y2 = p2.longitude;
+    CLLocationDegrees x3 = p3.latitude;
+    CLLocationDegrees y3 = p3.longitude;
+    CLLocationDegrees x4 = p4.latitude;
+    CLLocationDegrees y4 = p4.longitude;
+    
+    CLLocationDegrees denom = ((y4 - y3)*(x2 - x1) - (x4 - x3)*(y2 - y1));
+    if (denom == 0) {
+        // Line segments are parallel
+        // HACK: Assume not intersecting
+        return NO;
+    }
+    CLLocationDegrees ua = ((x4 - x3)*(y1 - y3) - (y4 - y3)*(x1 - x3)) / denom;
+    CLLocationDegrees ub = ((x2 - x1)*(y1 - y3) - (y2 - y1)*(x1 - x3)) / denom;
+    
+    return ((0 <= ua) && (ua <= 1)) && ((0 <= ub) && (ub <= 1));
 }
 
 - (void)requestDidFail:(PPURLRequest *)request {
