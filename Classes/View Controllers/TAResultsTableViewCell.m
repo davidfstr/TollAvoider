@@ -78,14 +78,15 @@
 
 #pragma mark - Operations
 
-- (void)update {
-    TADirectionsRoute *route;
+- (TADirectionsRoute *)route {
     if (self.identifier == TAResultsViewItemIdentifierDirect) {
-        route = request.firstNonbridgeRoute;
+        return request.firstNonbridgeRoute;
     } else {
-        route = [request.routes objectAtIndex:0];
+        return [request.routes objectAtIndex:0];
     }
-    
+}
+
+- (void)update {
     switch (request.status) {
         case TADirectionsNotRequested:
         case TADirectionsRequesting: {
@@ -117,7 +118,7 @@
             spinner.hidden = YES;
             iconView.hidden = NO;
             label1.text = @"";
-            label2.text = @"Error finding route...";
+            label2.text = @"Error finding route.";
             label3.text = @"";
             break;
         }
@@ -132,6 +133,8 @@
         }
         
         case TADirectionsOK: {
+            TADirectionsRoute *route = [self route];
+            
             NSString *costString = @"FREE";
             if (self.identifier == TAResultsViewItemIdentifier520) {
                 CGFloat *rateDescriptor = [TATollCalculator rateForNow];
@@ -162,6 +165,25 @@
         label3.text = @"Intersects WA-520 & I-90";
     }
      */
+}
+
+#pragma mark - Comparisons
+
+- (NSComparisonResult)compare:(TAResultsTableViewCell *)other {
+    BOOL selfOK = (self.request.status == TADirectionsOK);
+    BOOL otherOK = (other.request.status == TADirectionsOK);
+    
+    if (selfOK && otherOK) {
+        return (self.route.distanceValue <= other.route.distanceValue)
+            ? NSOrderedAscending
+            : NSOrderedDescending;
+    } else if (!selfOK && otherOK) {
+        return NSOrderedAscending;
+    } else if (selfOK && !otherOK) {
+        return NSOrderedDescending;
+    } else /*if (!selfOK && !otherOK)*/ {
+        return NSOrderedSame;
+    }
 }
 
 @end

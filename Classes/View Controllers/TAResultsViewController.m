@@ -42,7 +42,7 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
         directRequest = [[TADirectionsRequest alloc] initWithSource:source
                                                         destination:destination];
         directRequest.alternatives = YES;
-        // TODO: If this name-based query breaks in the future, recommend rewriting
+        // NOTE: If this name-based query breaks in the future, recommend rewriting
         //       to use similar logic as the I-90 coordinate-based queries.
         wa520Request = [[TADirectionsRequest alloc] initWithSource:source
                                                       waypointName:WA520_WAYPOINT_NAME
@@ -219,7 +219,12 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
                 }
             }
             
-            // TODO: Sort cells by status and distance
+            // Sort cells by status and distance
+            for (NSMutableArray *section in self.sections) {
+                NSArray *sortedSection = [section sortedArrayUsingSelector:@selector(compare:)];
+                [section removeAllObjects];
+                [section addObjectsFromArray:sortedSection];
+            }
         } else {
             // Keep all the rows in the loading state
         }
