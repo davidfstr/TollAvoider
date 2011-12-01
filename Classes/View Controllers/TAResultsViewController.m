@@ -14,8 +14,8 @@
 
 
 @interface TAResultsViewController()
-@property (nonatomic, readwrite, retain) NSArray *sectionNames;
-@property (nonatomic, readwrite, retain) NSArray *sections;
+@property (nonatomic, readwrite, retain) NSMutableArray *sectionNames;
+@property (nonatomic, readwrite, retain) NSMutableArray *sections;
 - (void)updateTable;
 @end
 
@@ -142,14 +142,14 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
             
             displayingError = NO;
             if (tollIsActive) {
-                self.sectionNames = [NSArray arrayWithObjects:@"Free", @"Tolled", nil];
+                self.sectionNames = [NSMutableArray arrayWithObjects:@"Free", @"Tolled", nil];
                 NSMutableArray *section1 = [NSMutableArray arrayWithObjects:i90Cell, directCell, nil];
                 NSMutableArray *section2 = [NSMutableArray arrayWithObjects:wa520Cell, nil];
-                self.sections = [NSArray arrayWithObjects:section1, section2, nil];
+                self.sections = [NSMutableArray arrayWithObjects:section1, section2, nil];
             } else {
-                self.sectionNames = [NSArray arrayWithObjects:@"Free", nil];
+                self.sectionNames = [NSMutableArray arrayWithObjects:@"Free", nil];
                 NSMutableArray *section1 = [NSMutableArray arrayWithObjects:wa520Cell, i90Cell, directCell, nil];
-                self.sections = [NSArray arrayWithObjects:section1, nil];
+                self.sections = [NSMutableArray arrayWithObjects:section1, nil];
             }
             break;
         }
@@ -157,9 +157,9 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
         case TADirectionsError:
         case TADirectionsZeroResults:
             displayingError = YES;
-            self.sectionNames = [NSArray arrayWithObjects:@"", nil];
+            self.sectionNames = [NSMutableArray arrayWithObjects:@"", nil];
             NSMutableArray *section1 = [NSMutableArray arrayWithObjects:errorCell, nil];
-            self.sections = [NSArray arrayWithObjects:section1, nil];
+            self.sections = [NSMutableArray arrayWithObjects:section1, nil];
             
         default:
             NSLog(@"*** Unknown TADirectionsRequestStatus: %d", (int) directRequest.status);
@@ -180,6 +180,33 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
                 // Remove direct cell
                 for (NSMutableArray *section in self.sections) {
                     [section removeObject:directCell];
+                }
+            }
+            
+            // If direct route does not offer an alternative that crosses a bridge,
+            // do not display any bridge routes
+            BOOL anyDirectRouteCrossesBridge = NO;
+            for (TADirectionsRoute *route in directRequest.routes) {
+                if (route.intersects520 || route.intersects90) {
+                    anyDirectRouteCrossesBridge = YES;
+                    break;
+                }
+            }
+            if (!anyDirectRouteCrossesBridge) {
+                // Remove all bridge cells
+                for (NSMutableArray *section in self.sections) {
+                    [section removeObject:wa520Cell];
+                    [section removeObject:i90Cell];
+                }
+                
+                // Remove any resultant empty sections
+                for (int i=0; i<sections.count; i++) {
+                    NSMutableArray *section = [sections objectAtIndex:i];
+                    if (section.count == 0) {
+                        [sections removeObjectAtIndex:i];
+                        [sectionNames removeObjectAtIndex:i];
+                        i--; // Try again at same index
+                    }
                 }
             }
             
