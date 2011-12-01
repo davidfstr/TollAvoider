@@ -43,6 +43,7 @@
 		69DAAC591486C7A10057FE34 /* I-90@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC531486C7A10057FE34 /* I-90@2x.png */; };
 		69DAAC5A1486C7A10057FE34 /* WA-520.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC541486C7A10057FE34 /* WA-520.png */; };
 		69DAAC5B1486C7A10057FE34 /* WA-520@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC551486C7A10057FE34 /* WA-520@2x.png */; };
+		69DAAC66148702B00057FE34 /* TATollCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DAAC65148702B00057FE34 /* TATollCalculator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,8 @@
 		69DAAC531486C7A10057FE34 /* I-90@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "I-90@2x.png"; sourceTree = "<group>"; };
 		69DAAC541486C7A10057FE34 /* WA-520.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WA-520.png"; sourceTree = "<group>"; };
 		69DAAC551486C7A10057FE34 /* WA-520@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WA-520@2x.png"; sourceTree = "<group>"; };
+		69DAAC64148702B00057FE34 /* TATollCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TATollCalculator.h; sourceTree = "<group>"; };
+		69DAAC65148702B00057FE34 /* TATollCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TATollCalculator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +279,8 @@
 				698AF6EC14856ABA0032B278 /* TADirectionsRequestStatus.h */,
 				698AF6ED14856DE70032B278 /* TADirectionsRoute.h */,
 				698AF6EE14856DE80032B278 /* TADirectionsRoute.m */,
+				69DAAC64148702B00057FE34 /* TATollCalculator.h */,
+				69DAAC65148702B00057FE34 /* TATollCalculator.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 				698AF6D4147C39610032B278 /* TAResultsTableViewCell.m in Sources */,
 				698AF6EA148469E00032B278 /* TADirectionsRequest.m in Sources */,
 				698AF6EF14856DE80032B278 /* TADirectionsRoute.m in Sources */,
+				69DAAC66148702B00057FE34 /* TATollCalculator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

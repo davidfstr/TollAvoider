@@ -9,6 +9,7 @@
 #import "TAResultsTableViewCell.h"
 #import "TADirectionsRequest.h"
 #import "TADirectionsRoute.h"
+#import "TATollCalculator.h"
 
 
 @interface TAResultsTableViewCell()
@@ -131,12 +132,22 @@
         }
         
         case TADirectionsOK: {
+            NSString *costString = @"FREE";
+            if (self.identifier == TAResultsViewItemIdentifier520) {
+                CGFloat *rateDescriptor = [TATollCalculator rateForNow];
+                CGFloat passPrice = rateDescriptor[1];
+                CGFloat noPassPrice = rateDescriptor[2];
+                if (passPrice != 0 || noPassPrice != 0) {
+                    costString = [NSString stringWithFormat:@"$%.02f (Pass), $%.02f (No Pass)",
+                                  passPrice, noPassPrice];
+                }
+            }
+            
             spinner.hidden = YES;
             iconView.hidden = NO;
             label1.text = route.title;
             label2.text = [NSString stringWithFormat:@"%@, %@", route.durationText, route.distanceText];
-            // TODO: Need to compute this for the 520 route, since it isn't always free
-            label3.text = @"FREE";
+            label3.text = costString;
             break;
         }
     }
