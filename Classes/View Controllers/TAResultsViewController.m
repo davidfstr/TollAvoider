@@ -254,4 +254,14 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
     return cell;
 }
 
+#pragma mark - UITableViewDelegate Methods
+
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *section = [self.sections objectAtIndex:indexPath.section];
+    TAResultsTableViewCell *cell = [section objectAtIndex:indexPath.row];
+    [cell tap];
+    
+    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 @end

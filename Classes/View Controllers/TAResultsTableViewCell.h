@@ -36,5 +36,6 @@ typedef enum {
                                        request:(TADirectionsRequest *)theRequest;
 
 - (void)update;
+- (void)tap;
 
 @end

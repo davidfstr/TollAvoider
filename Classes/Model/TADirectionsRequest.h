@@ -53,5 +53,6 @@
          destination:(CLLocationCoordinate2D)theDestination;
 
 - (void)startAsynchronous;
+- (void)openInGoogleMaps;
 
 @end

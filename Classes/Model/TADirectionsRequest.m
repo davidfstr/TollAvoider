@@ -134,6 +134,23 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
     [urlRequest startAsynchronous];
 }
 
+- (void)openInGoogleMaps {
+    NSString *urlString;
+    if (usesWaypoint) {
+        urlString = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=%lf,%lf&daddr=%@+to:%lf,%lf&dirflg=d",
+                     (double)source.latitude, (double)source.longitude,
+                     [waypointName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                     (double)destination.latitude, (double)destination.longitude];
+    } else {
+        urlString = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=%lf,%lf&daddr=%lf,%lf&dirflg=d",
+                     (double)source.latitude, (double)source.longitude,
+                     (double)destination.latitude, (double)destination.longitude];
+    }
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 #pragma mark - PPURLRequestDelegate Methods
 
 - (void)requestDidFinish:(PPURLRequest *)request {

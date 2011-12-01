@@ -76,7 +76,7 @@
     [super dealloc];
 }
 
-#pragma mark - Operations
+#pragma mark - Properties
 
 - (TADirectionsRoute *)route {
     if (self.identifier == TAResultsViewItemIdentifierDirect) {
@@ -85,6 +85,8 @@
         return [request.routes objectAtIndex:0];
     }
 }
+
+#pragma mark - Operations
 
 - (void)update {
     switch (request.status) {
@@ -155,16 +157,19 @@
         }
     }
     
-    // TODO: Remove
-    /*
-    if (route.intersects520 && !route.intersects90) {
-        label3.text = @"Intersects WA-520";
-    } else if (route.intersects90 && !route.intersects520) {
-        label3.text = @"Intersects I-90";
-    } else if (route.intersects520 && route.intersects90) {
-        label3.text = @"Intersects WA-520 & I-90";
+    if (request.status == TADirectionsOK) {
+        self.selectionStyle = UITableViewCellSelectionStyleBlue;
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.accessoryType = UITableViewCellAccessoryNone;
     }
-     */
+}
+
+- (void)tap {
+    if (request.status == TADirectionsOK) {
+        [request openInGoogleMaps];
+    }
 }
 
 #pragma mark - Comparisons

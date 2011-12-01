@@ -70,7 +70,7 @@
 							<object class="IBUILabel" id="1033043556">
 								<reference key="NSNextResponder" ref="813303834"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{72, 8}, {237, 21}}</string>
+								<string key="NSFrame">{{72, 8}, {217, 21}}</string>
 								<reference key="NSSuperview" ref="813303834"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="744112127"/>
@@ -102,7 +102,7 @@
 							<object class="IBUILabel" id="744112127">
 								<reference key="NSNextResponder" ref="813303834"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{72, 29}, {237, 21}}</string>
+								<string key="NSFrame">{{72, 29}, {217, 21}}</string>
 								<reference key="NSSuperview" ref="813303834"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="888897562"/>
@@ -112,7 +112,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Error while searching for route.</string>
+								<string key="IBUIText">Error finding route.</string>
 								<reference key="IBUITextColor" ref="225212614"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -131,7 +131,7 @@
 							<object class="IBUILabel" id="888897562">
 								<reference key="NSNextResponder" ref="813303834"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{72, 50}, {237, 21}}</string>
+								<string key="NSFrame">{{72, 50}, {238, 21}}</string>
 								<reference key="NSSuperview" ref="813303834"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -150,7 +150,7 @@
 								<reference key="IBUIFont" ref="973364557"/>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 79}</string>
+						<string key="NSFrameSize">{300, 79}</string>
 						<reference key="NSSuperview" ref="950706072"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="790196585"/>
@@ -172,6 +172,7 @@
 				<reference key="NSNextKeyView" ref="813303834"/>
 				<string key="NSReuseIdentifierKey">_NS:384</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="813303834"/>
 				<string key="IBUIReuseIdentifier">TAResultsTableViewCellID</string>
 			</object>
