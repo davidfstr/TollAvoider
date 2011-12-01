@@ -14,10 +14,23 @@
 
 #pragma mark - Init
 
+@synthesize prefs;
+
+- (id)init {
+    if ((self = [super init])) {
+        // Load preferences from disk
+        prefs = [[NSUserDefaults standardUserDefaults] retain];
+        [prefs registerDefaults:[NSDictionary dictionaryWithContentsOfFile:
+                                 [[NSBundle mainBundle] pathForResource:@"DefaultPreferences" ofType:@"plist"]]];
+    }
+    return self;
+}
+
 - (void)dealloc {
     [window release];
     [navController release];
     [searchViewController release];
+    [prefs release];
     [super dealloc];
 }
 

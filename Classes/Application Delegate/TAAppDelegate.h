@@ -16,4 +16,7 @@
     IBOutlet TASearchViewController *searchViewController;
 }
 
+/** Application preferences. */
+@property (nonatomic, readonly, assign) NSUserDefaults *prefs;
+
 @end

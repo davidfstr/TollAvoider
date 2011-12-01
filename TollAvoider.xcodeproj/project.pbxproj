@@ -48,6 +48,7 @@
 		69DAAC86148812590057FE34 /* App Icon (iPhone).png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC83148812590057FE34 /* App Icon (iPhone).png */; };
 		69DAAC87148812590057FE34 /* App Icon (iPhone)@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC84148812590057FE34 /* App Icon (iPhone)@2x.png */; };
 		69DAACA3148847770057FE34 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DAAC98148847770057FE34 /* libFlurryAnalytics.a */; };
+		69DAACB614884A140057FE34 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69DAACB514884A140057FE34 /* DefaultPreferences.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,7 @@
 		69DAAC84148812590057FE34 /* App Icon (iPhone)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon (iPhone)@2x.png"; sourceTree = "<group>"; };
 		69DAAC97148847770057FE34 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		69DAAC98148847770057FE34 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
+		69DAACB514884A140057FE34 /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +328,7 @@
 		6997BDD014732D3D00F8C96F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				69DAACB514884A140057FE34 /* DefaultPreferences.plist */,
 				695F2A7B1475B248007EBA17 /* Images */,
 			);
 			path = Resources;
@@ -436,6 +439,7 @@
 				69DAAC85148812590057FE34 /* ABOUT.txt in Resources */,
 				69DAAC86148812590057FE34 /* App Icon (iPhone).png in Resources */,
 				69DAAC87148812590057FE34 /* App Icon (iPhone)@2x.png in Resources */,
+				69DAACB614884A140057FE34 /* DefaultPreferences.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
