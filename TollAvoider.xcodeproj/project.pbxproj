@@ -44,6 +44,9 @@
 		69DAAC5A1486C7A10057FE34 /* WA-520.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC541486C7A10057FE34 /* WA-520.png */; };
 		69DAAC5B1486C7A10057FE34 /* WA-520@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC551486C7A10057FE34 /* WA-520@2x.png */; };
 		69DAAC66148702B00057FE34 /* TATollCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DAAC65148702B00057FE34 /* TATollCalculator.m */; };
+		69DAAC85148812590057FE34 /* ABOUT.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC82148812590057FE34 /* ABOUT.txt */; };
+		69DAAC86148812590057FE34 /* App Icon (iPhone).png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC83148812590057FE34 /* App Icon (iPhone).png */; };
+		69DAAC87148812590057FE34 /* App Icon (iPhone)@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC84148812590057FE34 /* App Icon (iPhone)@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +111,9 @@
 		69DAAC551486C7A10057FE34 /* WA-520@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WA-520@2x.png"; sourceTree = "<group>"; };
 		69DAAC64148702B00057FE34 /* TATollCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TATollCalculator.h; sourceTree = "<group>"; };
 		69DAAC65148702B00057FE34 /* TATollCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TATollCalculator.m; sourceTree = "<group>"; };
+		69DAAC82148812590057FE34 /* ABOUT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ABOUT.txt; sourceTree = "<group>"; };
+		69DAAC83148812590057FE34 /* App Icon (iPhone).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon (iPhone).png"; sourceTree = "<group>"; };
+		69DAAC84148812590057FE34 /* App Icon (iPhone)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon (iPhone)@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,7 @@
 		695F2A7B1475B248007EBA17 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				69DAAC81148812590057FE34 /* Application */,
 				695F2A7C1475B248007EBA17 /* Results */,
 				695F2A7E1475B248007EBA17 /* Search */,
 			);
@@ -328,6 +335,16 @@
 			path = Libraries;
 			sourceTree = "<group>";
 		};
+		69DAAC81148812590057FE34 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				69DAAC82148812590057FE34 /* ABOUT.txt */,
+				69DAAC83148812590057FE34 /* App Icon (iPhone).png */,
+				69DAAC84148812590057FE34 /* App Icon (iPhone)@2x.png */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -394,6 +411,9 @@
 				69DAAC591486C7A10057FE34 /* I-90@2x.png in Resources */,
 				69DAAC5A1486C7A10057FE34 /* WA-520.png in Resources */,
 				69DAAC5B1486C7A10057FE34 /* WA-520@2x.png in Resources */,
+				69DAAC85148812590057FE34 /* ABOUT.txt in Resources */,
+				69DAAC86148812590057FE34 /* App Icon (iPhone).png in Resources */,
+				69DAAC87148812590057FE34 /* App Icon (iPhone)@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

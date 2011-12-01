@@ -1,0 +1,6 @@
+These files are referenced by the CFBundleIconFiles key of the application's property list.
+
+If compatibility with iOS 3.1.3 and earlier is desired, these files must have specific names.
+
+For more information:
+http://developer.apple.com/library/ios/#documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/App-RelatedResources/App-RelatedResources.html
