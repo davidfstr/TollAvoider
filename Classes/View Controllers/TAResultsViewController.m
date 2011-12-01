@@ -10,6 +10,7 @@
 #import "TAResultsTableViewCell.h"
 #import "TADirectionsRequest.h"
 #import "TADirectionsRoute.h"
+#import "TATollCalculator.h"
 
 
 @interface TAResultsViewController()
@@ -131,20 +132,34 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
     switch (directRequest.status) {
         case TADirectionsNotRequested:
         case TADirectionsRequesting:
-        case TADirectionsOK:
-            // TODO: Use alternate view if no 520 toll presently
+        case TADirectionsOK: {
+            BOOL tollIsActive; {
+                CGFloat *rateDescriptor = [TATollCalculator rateForNow];
+                CGFloat passPrice = rateDescriptor[1];
+                CGFloat noPassPrice = rateDescriptor[2];
+                tollIsActive = (passPrice != 0 || noPassPrice != 0);
+            }
+            
             displayingError = NO;
-            self.sectionNames = [NSArray arrayWithObjects:@"Free", @"Tolled", nil];
-            NSMutableArray *section1 = [NSMutableArray arrayWithObjects:i90Cell, directCell, nil];
-            NSMutableArray *section2 = [NSMutableArray arrayWithObjects:wa520Cell, nil];
-            self.sections = [NSArray arrayWithObjects:section1, section2, nil];
+            if (tollIsActive) {
+                self.sectionNames = [NSArray arrayWithObjects:@"Free", @"Tolled", nil];
+                NSMutableArray *section1 = [NSMutableArray arrayWithObjects:i90Cell, directCell, nil];
+                NSMutableArray *section2 = [NSMutableArray arrayWithObjects:wa520Cell, nil];
+                self.sections = [NSArray arrayWithObjects:section1, section2, nil];
+            } else {
+                self.sectionNames = [NSArray arrayWithObjects:@"Free", nil];
+                NSMutableArray *section1 = [NSMutableArray arrayWithObjects:wa520Cell, i90Cell, directCell, nil];
+                self.sections = [NSArray arrayWithObjects:section1, nil];
+            }
             break;
+        }
             
         case TADirectionsError:
         case TADirectionsZeroResults:
             displayingError = YES;
             self.sectionNames = [NSArray arrayWithObjects:@"", nil];
-            self.sections = [NSArray arrayWithObjects:errorCell, nil];
+            NSMutableArray *section1 = [NSMutableArray arrayWithObjects:errorCell, nil];
+            self.sections = [NSArray arrayWithObjects:section1, nil];
             
         default:
             NSLog(@"*** Unknown TADirectionsRequestStatus: %d", (int) directRequest.status);
