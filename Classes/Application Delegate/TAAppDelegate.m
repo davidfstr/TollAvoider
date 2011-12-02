@@ -97,6 +97,8 @@
      */
     
     [TAAnalytics reportEvent:@"ApplicationStateChanged" value:@"Foreground" name:@"State"];
+    
+    [[TALocationTracking instance] markLocationAsStale];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

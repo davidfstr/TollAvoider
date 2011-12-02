@@ -29,4 +29,7 @@
 + (void)reportEvent:(NSString *)eventId params:(NSDictionary *)params;
 + (void)reportEvent:(NSString *)eventId value:(NSString *)value name:(NSString *)name;
 
+/** Reports the specified CLLocationCoordinate2D in standard analytics format. */
++ (NSString *)valueForCoordinate:(CLLocationCoordinate2D)location;
+
 @end

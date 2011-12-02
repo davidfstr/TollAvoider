@@ -175,4 +175,12 @@ static void uncaughtExceptionHandler(NSException *exception) {
     [TAAnalytics reportSwitchToViewWithID:viewId];
 }
 
+#pragma mark - Value Formatting
+
++ (NSString *)valueForCoordinate:(CLLocationCoordinate2D)location {
+    return [NSString stringWithFormat:@"%lf,%lf",
+            (double) location.latitude,
+            (double) location.longitude];
+}
+
 @end

@@ -14,6 +14,7 @@
     
     CLLocationManager *locationManager;
     CLLocation *lastUserLocation;
+    BOOL lastUserLocationIsStale;
 }
 
 /** The status of the search for the user's location. */
@@ -28,5 +29,8 @@
 
 + (TALocationTracking *)instance;
 - (void)initialize;
+
+/** Marks the current user location as stale, such as when the app is foregrounded. */
+- (void)markLocationAsStale;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "TALocationTracking.h"
+#import "TAAnalytics.h"
 
 
 @interface TALocationTracking()
@@ -45,7 +46,6 @@
     // (within 10 m == 0.006 mi)
     locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     locationManager.distanceFilter = kCLDistanceFilterNone;
-    [locationManager startUpdatingLocation];
     
     // If simulator, must simulate a location notification manually
 #if TARGET_IPHONE_SIMULATOR
@@ -56,6 +56,8 @@
     [self locationManager:locationManager
       didUpdateToLocation:toLocation
              fromLocation:nil];
+#else
+    [locationManager startUpdatingLocation];
 #endif
 }
 
@@ -78,17 +80,29 @@
     return lastUserLocation;
 }
 
+#pragma mark - Operations
+
+- (void)markLocationAsStale {
+    lastUserLocationIsStale = YES;
+}
+
 #pragma mark - CLLocationManagerDelegate Methods
 
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    if (oldLocation == nil) {
+    [TAAnalytics reportLocation:newLocation];
+    
+    if (oldLocation == nil || lastUserLocationIsStale) {
         NSLog(@"Initial location: lat=%lf, lng=%lf", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+        
+        [TAAnalytics reportEvent:@"UserLocationFound"
+                           value:[TAAnalytics valueForCoordinate:newLocation.coordinate] name:@"UserLocation"];
     } else {
         NSLog(@"Updated location: lat=%lf, lng=%lf", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     }
+    lastUserLocationIsStale = NO;
     
     self.lastUserLocation = newLocation;
     self.status = TALocationFound;
@@ -102,13 +116,18 @@
         // Unable to immediately determine location, but may still be able to determine after a delay.
         // Keep waiting.
         NSLog(@"Location currently unknown. Still waiting for location fix.");
-    } else if (error.code == kCLErrorDenied) {
-        // User has denied this application access to location services.
-        NSLog(@"*** Location access denied by user.");
-        self.status = TALocationErrorDenied;
     } else {
-        NSLog(@"*** Location isolation failed for unknown reason: %d", (int) error.code);
-        self.status = TALocationErrorOther;
+        if (error.code == kCLErrorDenied) {
+            // User has denied this application access to location services.
+            NSLog(@"*** Location access denied by user.");
+            self.status = TALocationErrorDenied;
+        } else {
+            NSLog(@"*** Location isolation failed for unknown reason: %d", (int) error.code);
+            self.status = TALocationErrorOther;
+        }
+        
+        [TAAnalytics reportEvent:@"UserLocationError"
+                           value:[NSString stringWithFormat:@"%d", (int) error.code] name:@"ErrorCode"];
     }
 }
 
