@@ -18,6 +18,7 @@
     NSString *waypointName;
     CLLocationCoordinate2D destination;
     BOOL alternatives;
+    NSString *analyticsDirectionsType;
     
     TADirectionsRequestStatus status;
     NSArray *routes;
@@ -41,16 +42,19 @@
 @property (nonatomic, readonly) TADirectionsRoute *firstNonbridgeRoute;
 
 - (id)initWithSource:(CLLocationCoordinate2D)theSource
-         destination:(CLLocationCoordinate2D)theDestination;
+         destination:(CLLocationCoordinate2D)theDestination
+                type:(NSString *)theAnalyticsDirectionsType;
 
 - (id)initWithSource:(CLLocationCoordinate2D)theSource
             waypoint:(CLLocationCoordinate2D)theWaypoint
-         destination:(CLLocationCoordinate2D)theDestination;
+         destination:(CLLocationCoordinate2D)theDestination
+                type:(NSString *)theAnalyticsDirectionsType;
 
 // This is the designated initializer.
 - (id)initWithSource:(CLLocationCoordinate2D)theSource
         waypointName:(NSString *)theWaypointName
-         destination:(CLLocationCoordinate2D)theDestination;
+         destination:(CLLocationCoordinate2D)theDestination
+                type:(NSString *)theAnalyticsDirectionsType;
 
 - (void)startAsynchronous;
 - (void)openInGoogleMaps;

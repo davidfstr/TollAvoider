@@ -89,7 +89,11 @@
 #pragma mark - Operations
 
 - (void)update {
-    switch (request.status) {
+    TADirectionsRequestStatus status = (request != nil)
+        ? request.status
+        : TADirectionsError;
+    
+    switch (status) {
         case TADirectionsNotRequested:
         case TADirectionsRequesting: {
             NSString *routeName;

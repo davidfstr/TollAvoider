@@ -40,19 +40,23 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
     self = [super initWithNibName:@"TAResultsViewController" bundle:nil];
     if (self) {
         directRequest = [[TADirectionsRequest alloc] initWithSource:source
-                                                        destination:destination];
+                                                        destination:destination
+                                                               type:@"Direct"];
         directRequest.alternatives = YES;
         // NOTE: If this name-based query breaks in the future, recommend rewriting
         //       to use similar logic as the I-90 coordinate-based queries.
         wa520Request = [[TADirectionsRequest alloc] initWithSource:source
                                                       waypointName:WA520_WAYPOINT_NAME
-                                                       destination:destination];
+                                                       destination:destination
+                                                              type:@"WA-520"];
         i90eRequest = [[TADirectionsRequest alloc] initWithSource:source
-                                                        waypoint:I90E_WAYPOINT
-                                                     destination:destination];
+                                                         waypoint:I90E_WAYPOINT
+                                                      destination:destination
+                                                             type:@"I-90 E"];
         i90wRequest = [[TADirectionsRequest alloc] initWithSource:source
                                                          waypoint:I90W_WAYPOINT
-                                                      destination:destination];
+                                                      destination:destination
+                                                             type:@"I-90 W"];
         
         directCell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifierDirect request:directRequest] retain];
         wa520Cell = [[TAResultsTableViewCell cellWithIdentifier:TAResultsViewItemIdentifier520 request:wa520Request] retain];
@@ -160,6 +164,7 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
             self.sectionNames = [NSMutableArray arrayWithObjects:@"", nil];
             NSMutableArray *section1 = [NSMutableArray arrayWithObjects:errorCell, nil];
             self.sections = [NSMutableArray arrayWithObjects:section1, nil];
+            break;
             
         default:
             NSLog(@"*** Unknown TADirectionsRequestStatus: %d", (int) directRequest.status);

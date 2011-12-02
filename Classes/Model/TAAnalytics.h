@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class TASearchLocation;
+@class TADirectionsRoute;
 
 @interface TAAnalytics : NSObject
 
@@ -43,5 +44,7 @@
 + (NSString *)valueForLocationArray:(NSArray *)locationArray;
 /** Returns the specified BOOL in standard analytics format. */
 + (NSString *)valueForBool:(BOOL)boolValue;
+/** Returns the specified TADirectionsRoute in standard analytics format. */
++ (NSString *)valueForRoute:(TADirectionsRoute *)route;
 
 @end

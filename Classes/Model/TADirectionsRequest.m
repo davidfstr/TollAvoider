@@ -10,6 +10,7 @@
 #import "PPURLRequest.h"
 #import "JSON.h"
 #import "TADirectionsRoute.h"
+#import "TAAnalytics.h"
 
 
 @interface TADirectionsRequest()
@@ -19,7 +20,7 @@
                              p2:(CLLocationCoordinate2D)p2
                              p3:(CLLocationCoordinate2D)p3
                              p4:(CLLocationCoordinate2D)p4;
-- (void)reportError;
+- (void)reportError:(NSString *)analyticsErrorDescription;
 - (void)reportNoRouteFound;
 - (void)reportRoutesFound:(NSArray *)theRoutes;
 @end
@@ -34,16 +35,19 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
 
 - (id)initWithSource:(CLLocationCoordinate2D)theSource
          destination:(CLLocationCoordinate2D)theDestination
+                type:(NSString *)theAnalyticsDirectionsType
 {
     
     return [self initWithSource:theSource
                        waypoint:CLLocationCoordinate2DMake(0, 0)
-                    destination:theDestination];
+                    destination:theDestination
+                           type:theAnalyticsDirectionsType];
 }
 
 - (id)initWithSource:(CLLocationCoordinate2D)theSource
             waypoint:(CLLocationCoordinate2D)theWaypoint
          destination:(CLLocationCoordinate2D)theDestination
+                type:(NSString *)theAnalyticsDirectionsType
 {
     NSString *theWaypointName;
     if ((theWaypoint.latitude != 0) || (theWaypoint.longitude != 0)) {
@@ -56,12 +60,14 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
     
     return [self initWithSource:theSource
                    waypointName:theWaypointName
-                    destination:theDestination];
+                    destination:theDestination
+                           type:theAnalyticsDirectionsType];
 }
 
 - (id)initWithSource:(CLLocationCoordinate2D)theSource
         waypointName:(NSString *)theWaypointName
          destination:(CLLocationCoordinate2D)theDestination
+                type:(NSString *)theAnalyticsDirectionsType
 {
     if (self = [super init]) {
         source = theSource;
@@ -70,6 +76,7 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
         waypointName = [theWaypointName retain];
         destination = theDestination;
         alternatives = NO;
+        analyticsDirectionsType = theAnalyticsDirectionsType;
         
         status = TADirectionsNotRequested;
     }
@@ -78,6 +85,7 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
 
 - (void)dealloc {
     [waypointName release];
+    [analyticsDirectionsType release];
     [super dealloc];
 }
 
@@ -113,6 +121,14 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
 
 - (void)startAsynchronous {
     NSLog(@"Searching for directions...");
+    
+    [TAAnalytics reportEvent:@"DirectionsSearch" params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                         analyticsDirectionsType, @"DirectionsType",
+                                                         [TAAnalytics valueForCoordinate:source], @"Source",
+                                                         [TAAnalytics valueForCoordinate:destination], @"Destination",
+                                                         [TAAnalytics valueForQuotedString:waypointName], @"Waypoint",
+                                                         nil]];
+    
     self.status = TADirectionsRequesting;
     
     NSString *urlString;
@@ -158,7 +174,7 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
     if (geocodingResultJson == nil) {
         NSLog(@"*** Unable to interpret directions result from server as string. Not UTF-8 encoded?");
         
-        [self reportError];
+        [self reportError:@"ResponseBadString"];
         return;
     }
     
@@ -166,7 +182,7 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
     if (geocodingResult == nil) {
         NSLog(@"*** Unable to parse directions response. Not JSON?");
         
-        [self reportError];
+        [self reportError:@"ResponseBadJson"];
         return;
     }
     
@@ -258,7 +274,8 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
             // Other error
             NSLog(@"*** Error getting directions: Got status code '%@'.", theStatus);
             
-            [self reportError];
+            [self reportError:[NSString stringWithFormat:@"GoogleDirectionsApiError,%@",
+                               [TAAnalytics valueForQuotedString:theStatus]]];
         }
     }
 }
@@ -344,19 +361,52 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
 - (void)requestDidFail:(PPURLRequest *)request {
     NSLog(@"*** Error getting directions: %@", request.error);
     
-    [self reportError];
+    [self reportError:[NSString stringWithFormat:@"RequestFail,%d,%@",
+                       (int) request.error.code,
+                       [TAAnalytics valueForQuotedString:request.error.domain]]];
 }
 
-- (void)reportError {
+- (void)reportError:(NSString *)analyticsErrorDescription {
+    [TAAnalytics reportEvent:@"DirectionsError" params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                        analyticsDirectionsType, @"DirectionsType",
+                                                        [TAAnalytics valueForCoordinate:source], @"Source",
+                                                        [TAAnalytics valueForCoordinate:destination], @"Destination",
+                                                        [TAAnalytics valueForQuotedString:waypointName], @"Waypoint",
+                                                        analyticsErrorDescription, @"Error",
+                                                        nil]];
+    
     self.status = TADirectionsError;
 }
 
 - (void)reportNoRouteFound {
+    [TAAnalytics reportEvent:@"DirectionsNotFound" params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           analyticsDirectionsType, @"DirectionsType",
+                                                           [TAAnalytics valueForCoordinate:source], @"Source",
+                                                           [TAAnalytics valueForCoordinate:destination], @"Destination",
+                                                           [TAAnalytics valueForQuotedString:waypointName], @"Waypoint",
+                                                           nil]];
+    
     self.status = TADirectionsZeroResults;
 }
 
 - (void)reportRoutesFound:(NSArray *)theRoutes {
     self.routes = theRoutes;
+    
+    // NOTE: Must log to analytics /after/ the routes are set above so that the 'firstNonbridgeRoute' property works
+    TADirectionsRoute *firstNonbridgeRoute = self.firstNonbridgeRoute;
+    TADirectionsRoute *firstRoute = [self.routes objectAtIndex:0];
+    TADirectionsRoute *designatedRoute = ([analyticsDirectionsType isEqualToString:@"Direct"])
+        ? firstNonbridgeRoute
+        : firstRoute;
+    [TAAnalytics reportEvent:@"DirectionsFound" params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                        analyticsDirectionsType, @"DirectionsType",
+                                                        [TAAnalytics valueForCoordinate:source], @"Source",
+                                                        [TAAnalytics valueForCoordinate:destination], @"Destination",
+                                                        [TAAnalytics valueForQuotedString:waypointName], @"Waypoint",
+                                                        [TAAnalytics valueForRoute:firstNonbridgeRoute], @"FirstNonbridgeRoute",
+                                                        [TAAnalytics valueForRoute:firstRoute], @"FirstRoute",
+                                                        [TAAnalytics valueForRoute:designatedRoute], @"DesignatedRoute",
+                                                        nil]];
     
     self.status = TADirectionsOK;
 }

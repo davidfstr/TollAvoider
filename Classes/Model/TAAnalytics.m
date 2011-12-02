@@ -10,6 +10,7 @@
 #import "FlurryAnalytics.h"
 #import "TAAppDelegate.h"
 #import "TASearchLocation.h"
+#import "TADirectionsRoute.h"
 
 
 @interface TAAnalytics()
@@ -217,6 +218,13 @@ static void uncaughtExceptionHandler(NSException *exception) {
 
 + (NSString *)valueForBool:(BOOL)boolValue {
     return boolValue ? @"YES" : @"NO";
+}
+
++ (NSString *)valueForRoute:(TADirectionsRoute *)route {
+    return [NSString stringWithFormat:@"%@;%@;%@",
+            route.durationText,
+            route.distanceText,
+            [TAAnalytics valueForQuotedString:route.title]];
 }
 
 @end
