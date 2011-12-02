@@ -143,6 +143,11 @@ static void uncaughtExceptionHandler(NSException *exception) {
                               nil]];
 }
 
++ (void)reportEvent:(NSString *)eventId {
+    [TAAnalytics reportEvent:eventId
+                      params:[NSDictionary dictionary]];
+}
+
 #pragma mark - View Change Listener
 
 // NOTE: In PPAnalytics (which this class is based on), there is a lot more fancy logic in this section

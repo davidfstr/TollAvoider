@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>   // for layer.cornerRadius
 #import "TASearchLocation.h"
 #import "TAResultsViewController.h"
+#import "TAAnalytics.h"
 
 
 @interface TASearchViewController()
@@ -216,6 +217,8 @@
 }
 
 - (IBAction)parkPlaceButtonTapped:(id)sender {
+    [TAAnalytics reportEvent:@"ExitToParkPlace"];
+    
     NSString *ppAppStoreUrlString = @"http://itunes.apple.com/us/app/park-place/id366719922?mt=8";
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ppAppStoreUrlString]];
 }

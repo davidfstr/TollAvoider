@@ -25,9 +25,12 @@
  * method whenever possible.
  */
 + (void)reportSwitchToViewWithID:(NSString *)viewId;
-/** Reports an individual event. */
+/** Reports an individual event with the specified parameters. */
 + (void)reportEvent:(NSString *)eventId params:(NSDictionary *)params;
+/** Reports an individual event with the specified parameter. */
 + (void)reportEvent:(NSString *)eventId value:(NSString *)value name:(NSString *)name;
+/** Reports an individual event with no parameters. */
++ (void)reportEvent:(NSString *)eventId;
 
 /** Reports the specified CLLocationCoordinate2D in standard analytics format. */
 + (NSString *)valueForCoordinate:(CLLocationCoordinate2D)location;
