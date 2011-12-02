@@ -25,6 +25,14 @@
 
 @implementation TASearchViewController
 
+#define LOG_OVERLAY_STATE 0
+
+#if LOG_OVERLAY_STATE
+    #define OverlayLog(format, args...) NSLog(format, ## args)
+#else
+    #define OverlayLog(format, args...) /* nothing */
+#endif
+
 #pragma mark - Init
 
 - (void)awakeFromNib {
@@ -173,7 +181,7 @@
 }
 
 - (void)showErrorOverlay:(NSString *)message {
-    NSLog(@"*** %@", message);
+    OverlayLog(@"*** %@", message);
     
     overlayErrorIcon.hidden = NO;
     overlayLoadingSpinner.hidden = YES;
@@ -182,7 +190,7 @@
 }
 
 - (void)showLoadingOverlay:(NSString *)message {
-    NSLog(@"--- %@", message);
+    OverlayLog(@"--- %@", message);
     
     overlayErrorIcon.hidden = YES;
     overlayLoadingSpinner.hidden = NO;
@@ -191,7 +199,7 @@
 }
 
 - (void)hideOverlay {
-    NSLog(@"--- <hidden>");
+    OverlayLog(@"--- <hidden>");
     
     overlay.hidden = YES;
 }
