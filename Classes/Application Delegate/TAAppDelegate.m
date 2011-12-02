@@ -9,12 +9,23 @@
 #import "TAAppDelegate.h"
 #import "TALocationTracking.h"
 #import "TASearchViewController.h"
+#import "TAAnalytics.h"
+
+
+@interface TAAppDelegate()
+- (void)doTasksForEnterBackgroundOrWillTerminate;
+@end
+
 
 @implementation TAAppDelegate
 
+@synthesize prefs;
+
 #pragma mark - Init
 
-@synthesize prefs;
++ (TAAppDelegate *)instance {
+    return (TAAppDelegate *)UIApplication.sharedApplication.delegate;
+}
 
 - (id)init {
     if ((self = [super init])) {
@@ -41,6 +52,7 @@
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Initialize subsystems
+    [TAAnalytics initializeAnalytics];
     [[TALocationTracking instance] initialize];
     
     // Configure and show main window
@@ -62,6 +74,8 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    
+    [self doTasksForEnterBackgroundOrWillTerminate];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -82,6 +96,14 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    
+    [self doTasksForEnterBackgroundOrWillTerminate];
+}
+
+- (void)doTasksForEnterBackgroundOrWillTerminate {
+    // Save preferences to disk
+    NSLog(@"Saving preferences");
+    [prefs synchronize];
 }
 
 #pragma mark - UINavigationControllerDelegate Methods

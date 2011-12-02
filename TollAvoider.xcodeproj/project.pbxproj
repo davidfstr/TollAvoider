@@ -49,6 +49,7 @@
 		69DAAC87148812590057FE34 /* App Icon (iPhone)@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC84148812590057FE34 /* App Icon (iPhone)@2x.png */; };
 		69DAACA3148847770057FE34 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DAAC98148847770057FE34 /* libFlurryAnalytics.a */; };
 		69DAACB614884A140057FE34 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69DAACB514884A140057FE34 /* DefaultPreferences.plist */; };
+		69DAAC8E148845870057FE34 /* TAAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DAAC8D148845870057FE34 /* TAAnalytics.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,8 @@
 		69DAAC97148847770057FE34 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		69DAAC98148847770057FE34 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		69DAACB514884A140057FE34 /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
+		69DAAC8C148845870057FE34 /* TAAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnalytics.h; sourceTree = "<group>"; };
+		69DAAC8D148845870057FE34 /* TAAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAnalytics.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +282,8 @@
 		6997BDCC14732C7B00F8C96F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				69DAAC8C148845870057FE34 /* TAAnalytics.h */,
+				69DAAC8D148845870057FE34 /* TAAnalytics.m */,
 				698AF5731475D1DB0032B278 /* TADestinationGeocoder.h */,
 				698AF5741475D1DB0032B278 /* TADestinationGeocoder.m */,
 				698AF5771475D2060032B278 /* TADestinationGeocoderStatus.h */,
@@ -467,6 +472,7 @@
 				698AF6EA148469E00032B278 /* TADirectionsRequest.m in Sources */,
 				698AF6EF14856DE80032B278 /* TADirectionsRoute.m in Sources */,
 				69DAAC66148702B00057FE34 /* TATollCalculator.m in Sources */,
+				69DAAC8E148845870057FE34 /* TAAnalytics.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

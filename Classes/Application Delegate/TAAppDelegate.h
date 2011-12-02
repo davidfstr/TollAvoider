@@ -19,4 +19,9 @@
 /** Application preferences. */
 @property (nonatomic, readonly, assign) NSUserDefaults *prefs;
 
+/**
+ * The single application delegate instance.
+ */
++ (TAAppDelegate *)instance;
+
 @end
