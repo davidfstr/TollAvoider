@@ -64,4 +64,34 @@ static void uncaughtExceptionHandler(NSException *exception) {
     }
 }
 
++ (void)reportEvent:(NSString *)eventId params:(NSDictionary *)_params {
+    // Add additional parameters common to all events
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:_params];
+    {
+        NSDate *date = [NSDate date];
+        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZ"];
+        NSString *dateString = [dateFormatter stringFromDate:date];
+        
+        [params setObject:dateString forKey:@"_Time"];
+    }
+    
+    // Log to console
+    NSLog(@"> %@", eventId);
+    for (NSString *key in params) {
+        NSLog(@"    | %@: '%@'", key, [params objectForKey:key]);
+    }
+    
+    if ([TAAnalytics enabled]) {
+        [FlurryAnalytics logEvent:eventId withParameters:params];
+    }
+}
+
++ (void)reportEvent:(NSString *)eventId value:(NSString *)value name:(NSString *)name {
+    [TAAnalytics reportEvent:eventId
+                      params:[NSDictionary dictionaryWithObjectsAndKeys:
+                              value, name,
+                              nil]];
+}
+
 @end
