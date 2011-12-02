@@ -164,6 +164,9 @@ static CLLocationCoordinate2D I90_PERPENDICULAR_LINE_SEGMENT_P2 = { 47.576061, -
     }
     NSURL *url = [NSURL URLWithString:urlString];
     
+    [TAAnalytics reportEvent:@"ExitToDirections"
+                       value:analyticsDirectionsType name:@"DirectionsType"];
+    
     [[UIApplication sharedApplication] openURL:url];
 }
 
