@@ -51,8 +51,17 @@
  * Invoked after main NIB loaded and app has finished launching.
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Initialize subsystems
+    // Initialize analytics (first)
     [TAAnalytics initializeAnalytics];
+    [TAAnalytics reportEvent:@"ApplicationStateChanged"
+                      params:[NSDictionary dictionaryWithObjectsAndKeys:
+                              @"Launched", @"State",
+                              // Special parameters for the Launched event
+                              [[UIDevice currentDevice] systemName], @"SystemName",
+                              [[UIDevice currentDevice] systemVersion], @"SystemVersion",
+                              nil]];
+    
+    // Initialize other subsystems
     [[TALocationTracking instance] initialize];
     
     // Configure and show main window
@@ -67,6 +76,8 @@
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
+    
+    [TAAnalytics reportEvent:@"ApplicationStateChanged" value:@"Inactive" name:@"State"];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -75,6 +86,8 @@
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     
+    [TAAnalytics reportEvent:@"ApplicationStateChanged" value:@"Background" name:@"State"];
+    
     [self doTasksForEnterBackgroundOrWillTerminate];
 }
 
@@ -82,12 +95,16 @@
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
+    
+    [TAAnalytics reportEvent:@"ApplicationStateChanged" value:@"Foreground" name:@"State"];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    
+    [TAAnalytics reportEvent:@"ApplicationStateChanged" value:@"Active" name:@"State"];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -96,6 +113,8 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    
+    [TAAnalytics reportEvent:@"ApplicationStateChanged" value:@"Terminated" name:@"State"];
     
     [self doTasksForEnterBackgroundOrWillTerminate];
 }
