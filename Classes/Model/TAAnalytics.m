@@ -9,6 +9,7 @@
 #import "TAAnalytics.h"
 #import "FlurryAnalytics.h"
 #import "TAAppDelegate.h"
+#import "TASearchLocation.h"
 
 
 @interface TAAnalytics()
@@ -182,10 +183,40 @@ static void uncaughtExceptionHandler(NSException *exception) {
 
 #pragma mark - Value Formatting
 
++ (NSString *)valueForQuotedString:(NSString *)str {
+    NSString *escapedStr = [str stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    return [NSString stringWithFormat:@"\"%@\"", escapedStr];
+}
+
 + (NSString *)valueForCoordinate:(CLLocationCoordinate2D)location {
     return [NSString stringWithFormat:@"%lf,%lf",
             (double) location.latitude,
             (double) location.longitude];
+}
+
++ (NSString *)valueForLocation:(TASearchLocation *)location {
+    return [NSString stringWithFormat:@"%lf,%lf,%@",
+            (double) location.location.latitude,
+            (double) location.location.longitude,
+            [TAAnalytics valueForQuotedString:location.address]];
+}
+
++ (NSString *)valueForLocationArray:(NSArray *)locationArray {
+    NSMutableString *stringBuf = [[[NSMutableString alloc] initWithCapacity:64] autorelease];
+    BOOL firstLocation = YES;
+    for (TASearchLocation *location in locationArray) {
+        if (firstLocation) {
+            firstLocation = NO;
+        } else {
+            [stringBuf appendString:@";"];
+        }
+        [stringBuf appendString:[TAAnalytics valueForLocation:location]];
+    }
+    return stringBuf;
+}
+
++ (NSString *)valueForBool:(BOOL)boolValue {
+    return boolValue ? @"YES" : @"NO";
 }
 
 @end

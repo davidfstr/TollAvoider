@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class TASearchLocation;
+
 @interface TAAnalytics : NSObject
 
 /** Whether analytics reporting to the backend is enabled. */
@@ -32,7 +34,14 @@
 /** Reports an individual event with no parameters. */
 + (void)reportEvent:(NSString *)eventId;
 
++ (NSString *)valueForQuotedString:(NSString *)str;
 /** Reports the specified CLLocationCoordinate2D in standard analytics format. */
 + (NSString *)valueForCoordinate:(CLLocationCoordinate2D)location;
+/** Returns the specified TASearchLocation in standard analytics format. */
++ (NSString *)valueForLocation:(TASearchLocation *)location;
+/** Returns the specified TASearchLocation array in standard analytics format. */
++ (NSString *)valueForLocationArray:(NSArray *)locationArray;
+/** Returns the specified BOOL in standard analytics format. */
++ (NSString *)valueForBool:(BOOL)boolValue;
 
 @end

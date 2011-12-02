@@ -10,6 +10,7 @@
 #import "PPURLRequest.h"
 #import "TASearchLocation.h"
 #import "JSON.h"
+#import "TAAnalytics.h"
 
 
 @interface TADestinationGeocoder()
@@ -73,6 +74,11 @@
     self.searchLocations = nil;
     self.searchLocationChosen = nil;
     
+    [TAAnalytics reportEvent:@"GeocoderStartWithQuery"
+                      params:[NSDictionary dictionaryWithObjectsAndKeys:
+                              query, @"Query",
+                              nil]];
+    
     self.status = TAGeocoderGeocoding;
     
     NSString *searchQueryEscaped = [theQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -86,14 +92,45 @@
 }
 
 - (void)continueSearchWithUniqueLocation:(TASearchLocation *)location {
+    [TAAnalytics reportEvent:@"GeocoderResolutionUnique"
+                      params:[NSDictionary dictionaryWithObjectsAndKeys:
+                              query, @"Query",
+                              [TAAnalytics valueForLocation:location], @"ChosenLocation",
+                              nil]];
+    
     [self continueSearchWithLocation:location];
 }
 
 - (void)continueSearchWithResolvedLocation:(TASearchLocation *)location {
+    if (location == nil) {
+        [TAAnalytics reportEvent:@"GeocoderDisambiguationCancel"
+                          params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                  self.query, @"Query",
+                                  [TAAnalytics valueForLocationArray:self.searchLocations], @"MatchingLocations",
+                                  nil]];
+    } else {
+        [TAAnalytics reportEvent:@"GeocoderDisambiguated"
+                          params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                  self.query, @"Query",
+                                  [TAAnalytics valueForLocationArray:self.searchLocations], @"MatchingLocations",
+                                  [TAAnalytics valueForLocation:location], @"ChosenLocation",
+                                  nil]];
+    }
+    
     [self continueSearchWithLocation:location];
 }
 
 - (void)continueSearchWithLocation:(TASearchLocation *)location {
+    if (location != nil) {
+        [TAAnalytics reportEvent:@"GeocoderFinishWithLocation"
+                          params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                  self.query, @"Query",
+                                  [TAAnalytics valueForBool:(self.searchLocations.count > 1)], @"WasAmbiguous",
+                                  [TAAnalytics valueForLocationArray:self.searchLocations], @"MatchingLocations",
+                                  [TAAnalytics valueForLocation:location], @"ChosenLocation",
+                                  nil]];
+    }
+    
     self.searchLocationChosen = location;
     self.status = (location != nil) ? TAGeocoderGeocodeComplete : TAGeocoderNotGeocoding;
 }
@@ -145,11 +182,22 @@
                 } else if (theSearchLocations.count == 1) {
                     [self continueSearchWithUniqueLocation:[theSearchLocations objectAtIndex:0]];
                 } else {
+                    [TAAnalytics reportEvent:@"GeocoderResolutionAmbiguous"
+                                      params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                              query, @"Query",
+                                              [TAAnalytics valueForLocationArray:searchLocations], @"MatchingLocations",
+                                              nil]];
+                    
                     self.status = TAGeocoderGeocodeAmbiguous;
                 }
             } else if ([theStatus isEqualToString:@"ZERO_RESULTS"]) {
                 // No results
                 NSLog(@"Not found");
+                
+                [TAAnalytics reportEvent:@"GeocoderQueryNotFound"
+                                  params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                          query, @"Query",
+                                          nil]];
                 
                 self.status = TAGeocoderGeocodeNoMatch;
             } else {
