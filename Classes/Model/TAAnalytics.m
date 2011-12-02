@@ -13,10 +13,33 @@
 
 @interface TAAnalytics()
 static void uncaughtExceptionHandler(NSException *exception);
+- (void)didShowViewController:(UIViewController *)viewController;
 @end
 
 
 @implementation TAAnalytics
+
+#pragma mark - Init
+
++ (TAAnalytics *)instance {
+    static TAAnalytics *instance = nil;
+    if (!instance) {
+        instance = [[TAAnalytics alloc] init];
+    }
+    return instance;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        // nothing
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [super dealloc];
+}
 
 #pragma mark - Properties
 
@@ -64,6 +87,32 @@ static void uncaughtExceptionHandler(NSException *exception) {
     }
 }
 
++ (void)reportLocation:(CLLocation *)newLocation {
+    if ([TAAnalytics enabled]) {
+        [FlurryAnalytics setLatitude:newLocation.coordinate.latitude
+                           longitude:newLocation.coordinate.longitude
+                  horizontalAccuracy:newLocation.horizontalAccuracy
+                    verticalAccuracy:newLocation.verticalAccuracy];
+    }
+}
+
++ (void)reportSwitchToView:(UIViewController *)viewController {
+    [[TAAnalytics instance] didShowViewController:viewController];
+}
+
++ (void)reportSwitchToViewWithID:(NSString *)viewId {
+    // Don't log the same controller twice in a row
+    static NSString *lastReportedViewId = nil;
+    if ([lastReportedViewId isEqualToString:viewId]) {
+        return;
+    }
+    [lastReportedViewId autorelease];
+    lastReportedViewId = [viewId retain];
+    
+    [TAAnalytics reportEvent:@"ShowView" params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                 viewId, @"View", nil]];
+}
+
 + (void)reportEvent:(NSString *)eventId params:(NSDictionary *)_params {
     // Add additional parameters common to all events
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:_params];
@@ -92,6 +141,38 @@ static void uncaughtExceptionHandler(NSException *exception) {
                       params:[NSDictionary dictionaryWithObjectsAndKeys:
                               value, name,
                               nil]];
+}
+
+#pragma mark - View Change Listener
+
+// NOTE: In PPAnalytics (which this class is based on), there is a lot more fancy logic in this section
+//       to handle automatic detection of switches between views. This app is sufficiently simple
+//       that all such switches are reported manually.
+
+- (void)didShowViewController:(UIViewController *)viewController {
+    // Drill into tab bar controllers
+    if ([viewController isKindOfClass:[UITabBarController class]]) {
+        viewController = ((UITabBarController *)viewController).selectedViewController;
+    }
+    
+    // Drill into navigation controllers
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        // NOTE: Don't use 'visibleViewController', since that will pick up modal controllers that are being dismissed
+        viewController = ((UINavigationController *)viewController).topViewController;
+    }
+    
+    // Determine ID of view to log
+    NSString *viewId;
+    SEL analyticsViewId = @selector(analyticsViewId);
+    if ([viewController respondsToSelector:analyticsViewId]) {
+        // If present, use [analyticsViewId] as the view ID
+        viewId = [viewController performSelector:analyticsViewId];
+    } else {
+        // Otherwise use view controller's classname as the view ID
+        viewId = NSStringFromClass([viewController class]);
+    }
+    
+    [TAAnalytics reportSwitchToViewWithID:viewId];
 }
 
 @end

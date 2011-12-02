@@ -15,6 +15,16 @@
 
 /** Initializes analytics. Should be invoked once at app startup. */
 + (void)initializeAnalytics;
+/** Logs the user's presence at the specified location. */
++ (void)reportLocation:(CLLocation *)newLocation;
+/** Reports a switch to the specified view controller. */
++ (void)reportSwitchToView:(UIViewController *)viewController;
+/**
+ * Manually reports a switch to a particular view ID.
+ * Callers should use [reportSwitchToView:] in preference to this
+ * method whenever possible.
+ */
++ (void)reportSwitchToViewWithID:(NSString *)viewId;
 /** Reports an individual event. */
 + (void)reportEvent:(NSString *)eventId params:(NSDictionary *)params;
 + (void)reportEvent:(NSString *)eventId value:(NSString *)value name:(NSString *)name;

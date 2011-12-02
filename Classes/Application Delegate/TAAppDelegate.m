@@ -114,6 +114,8 @@
 {
     BOOL shouldHideBar = (viewController == searchViewController);
     [navController setNavigationBarHidden:shouldHideBar animated:YES];
+    
+    [TAAnalytics reportSwitchToView:navController];
 }
 
 @end
