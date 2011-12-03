@@ -16,6 +16,9 @@
 		697740E21489CC9F00E38BDD /* Search Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 697740E11489CC9F00E38BDD /* Search Background.png */; };
 		697740E61489CCA900E38BDD /* Results Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 697740E41489CCA900E38BDD /* Results Background.png */; };
 		697740E71489CCA900E38BDD /* Results Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 697740E51489CCA900E38BDD /* Results Background@2x.png */; };
+		697741051489FFD400E38BDD /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697741041489FFD400E38BDD /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		69774109148A01E200E38BDD /* twitterButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 69774107148A01E200E38BDD /* twitterButton.png */; };
+		6977410A148A01E200E38BDD /* twitterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69774108148A01E200E38BDD /* twitterButton@2x.png */; };
 		698AF5751475D1DB0032B278 /* TADestinationGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5741475D1DB0032B278 /* TADestinationGeocoder.m */; };
 		698AF57A1475D7130032B278 /* TASearchLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5791475D7130032B278 /* TASearchLocation.m */; };
 		698AF57E1475D8E70032B278 /* PPURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF57C1475D8E70032B278 /* PPURLRequest.m */; };
@@ -67,6 +70,9 @@
 		697740E11489CC9F00E38BDD /* Search Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Background.png"; sourceTree = "<group>"; };
 		697740E41489CCA900E38BDD /* Results Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Results Background.png"; sourceTree = "<group>"; };
 		697740E51489CCA900E38BDD /* Results Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Results Background@2x.png"; sourceTree = "<group>"; };
+		697741041489FFD400E38BDD /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		69774107148A01E200E38BDD /* twitterButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterButton.png; sourceTree = "<group>"; };
+		69774108148A01E200E38BDD /* twitterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitterButton@2x.png"; sourceTree = "<group>"; };
 		698AF5731475D1DB0032B278 /* TADestinationGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADestinationGeocoder.h; sourceTree = "<group>"; };
 		698AF5741475D1DB0032B278 /* TADestinationGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADestinationGeocoder.m; sourceTree = "<group>"; };
 		698AF5771475D2060032B278 /* TADestinationGeocoderStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADestinationGeocoderStatus.h; sourceTree = "<group>"; };
@@ -135,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				697741051489FFD400E38BDD /* Twitter.framework in Frameworks */,
 				695F2A8F1475CBFF007EBA17 /* CoreLocation.framework in Frameworks */,
 				6997BD6E1473202F00F8C96F /* UIKit.framework in Frameworks */,
 				6997BD701473202F00F8C96F /* Foundation.framework in Frameworks */,
@@ -165,6 +172,8 @@
 				69DAAC531486C7A10057FE34 /* I-90@2x.png */,
 				697740E41489CCA900E38BDD /* Results Background.png */,
 				697740E51489CCA900E38BDD /* Results Background@2x.png */,
+				69774107148A01E200E38BDD /* twitterButton.png */,
+				69774108148A01E200E38BDD /* twitterButton@2x.png */,
 				69DAAC541486C7A10057FE34 /* WA-520.png */,
 				69DAAC551486C7A10057FE34 /* WA-520@2x.png */,
 			);
@@ -238,6 +247,7 @@
 				6997BD6F1473202F00F8C96F /* Foundation.framework */,
 				6997BD711473202F00F8C96F /* CoreGraphics.framework */,
 				695F2A8E1475CBFF007EBA17 /* CoreLocation.framework */,
+				697741041489FFD400E38BDD /* Twitter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -457,6 +467,8 @@
 				697740E21489CC9F00E38BDD /* Search Background.png in Resources */,
 				697740E61489CCA900E38BDD /* Results Background.png in Resources */,
 				697740E71489CCA900E38BDD /* Results Background@2x.png in Resources */,
+				69774109148A01E200E38BDD /* twitterButton.png in Resources */,
+				6977410A148A01E200E38BDD /* twitterButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

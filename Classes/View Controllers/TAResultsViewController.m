@@ -11,11 +11,14 @@
 #import "TADirectionsRequest.h"
 #import "TADirectionsRoute.h"
 #import "TATollCalculator.h"
+#import <Twitter/Twitter.h>
 
 
 @interface TAResultsViewController()
 @property (nonatomic, readwrite, retain) NSMutableArray *sectionNames;
 @property (nonatomic, readwrite, retain) NSMutableArray *sections;
++ (BOOL)twitterAvailable;
+- (void)setTweetSectionHidden:(BOOL)hidden;
 - (void)updateTable;
 @end
 
@@ -23,6 +26,9 @@
 @implementation TAResultsViewController
 
 #pragma mark - Init
+
+static NSString *TWEET_DEFAULT_MESSAGE = @"@TollAvoider is giving away free WA-520 toll credits. RT with #tollpocalypse to win!";
+static NSString *TWEET_DEFAULT_URL_STRING = @"http://bit.ly/avoid520";
 
 static NSString *WA520_WAYPOINT_NAME = @"WA-520 Bridge, Seattle, WA";
 //static CLLocationCoordinate2D WA520E_WAYPOINT = (CLLocationCoordinate2D) { 47.636, -122.256 };
@@ -91,6 +97,9 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
     [i90eRequest release];
     [i90wRequest release];
     [tableView release];
+    [tweetBackground release];
+    [tweetLabel release];
+    [tweetButton release];
     [super dealloc];
 }
 
@@ -109,7 +118,8 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
     TAResultsTableViewCell *anyCell = wa520Cell;
     [tableView setRowHeight:anyCell.frame.size.height];
     
-    // Do any additional setup after loading the view from its nib.
+    // Initially hide the Twitter section
+    [self setTweetSectionHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -122,6 +132,12 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
 - (void)viewDidUnload {
     [tableView release];
     tableView = nil;
+    [tweetBackground release];
+    tweetBackground = nil;
+    [tweetLabel release];
+    tweetLabel = nil;
+    [tweetButton release];
+    tweetButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -130,6 +146,33 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - Twitter Integration
+
++ (BOOL)twitterAvailable {
+    return ([TWTweetComposeViewController class] != nil);
+}
+
+- (void)setTweetSectionHidden:(BOOL)hidden {
+    tweetBackground.hidden = hidden;
+    tweetLabel.hidden = hidden;
+    tweetButton.hidden = hidden;
+}
+
+- (IBAction)twitterButtonTapped:(id)sender {
+    if (![TAResultsViewController twitterAvailable]) {
+        // Shouldn't get here, but avoid crashing if we do
+        return;
+    }
+    
+    TWTweetComposeViewController *tweetSheet = 
+        [[[TWTweetComposeViewController alloc] init] autorelease];
+    
+    [tweetSheet setInitialText:TWEET_DEFAULT_MESSAGE];
+    [tweetSheet addURL:[NSURL URLWithString:TWEET_DEFAULT_URL_STRING]];
+    
+    [self presentModalViewController:tweetSheet animated:YES];
 }
 
 #pragma mark - Operations
@@ -189,6 +232,11 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
                 for (NSMutableArray *section in self.sections) {
                     [section removeObject:directCell];
                 }
+            }
+            
+            // Show Twitter button if Twitter available
+            if ([TAResultsViewController twitterAvailable]) {
+                [self setTweetSectionHidden:NO];
             }
             
             // If direct route does not offer an alternative that crosses a bridge,

@@ -23,9 +23,15 @@
     TADirectionsRequest *i90wRequest;
     
     IBOutlet UITableView *tableView;
+    
+    IBOutlet UIImageView *tweetBackground;
+    IBOutlet UILabel *tweetLabel;
+    IBOutlet UIButton *tweetButton;
 }
 
 - (id)initWithSource:(CLLocationCoordinate2D)source
          destination:(CLLocationCoordinate2D)destination;
+
+- (IBAction)twitterButtonTapped:(id)sender;
 
 @end

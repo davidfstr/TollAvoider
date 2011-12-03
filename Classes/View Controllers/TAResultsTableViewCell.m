@@ -182,14 +182,15 @@
     BOOL selfOK = (self.request.status == TADirectionsOK);
     BOOL otherOK = (other.request.status == TADirectionsOK);
     
+    // Push errors to the bottom. Otherwise shortest distance first.
     if (selfOK && otherOK) {
         return (self.route.distanceValue <= other.route.distanceValue)
             ? NSOrderedAscending
             : NSOrderedDescending;
     } else if (!selfOK && otherOK) {
-        return NSOrderedAscending;
-    } else if (selfOK && !otherOK) {
         return NSOrderedDescending;
+    } else if (selfOK && !otherOK) {
+        return NSOrderedAscending;
     } else /*if (!selfOK && !otherOK)*/ {
         return NSOrderedSame;
     }
