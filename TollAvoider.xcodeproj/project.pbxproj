@@ -13,6 +13,9 @@
 		695F2A811475B248007EBA17 /* Search Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 695F2A7F1475B248007EBA17 /* Search Background@2x.png */; };
 		695F2A8C1475C8CA007EBA17 /* TALocationTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F2A8B1475C8CA007EBA17 /* TALocationTracking.m */; };
 		695F2A8F1475CBFF007EBA17 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 695F2A8E1475CBFF007EBA17 /* CoreLocation.framework */; };
+		697740E21489CC9F00E38BDD /* Search Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 697740E11489CC9F00E38BDD /* Search Background.png */; };
+		697740E61489CCA900E38BDD /* Results Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 697740E41489CCA900E38BDD /* Results Background.png */; };
+		697740E71489CCA900E38BDD /* Results Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 697740E51489CCA900E38BDD /* Results Background@2x.png */; };
 		698AF5751475D1DB0032B278 /* TADestinationGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5741475D1DB0032B278 /* TADestinationGeocoder.m */; };
 		698AF57A1475D7130032B278 /* TASearchLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF5791475D7130032B278 /* TASearchLocation.m */; };
 		698AF57E1475D8E70032B278 /* PPURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 698AF57C1475D8E70032B278 /* PPURLRequest.m */; };
@@ -47,9 +50,9 @@
 		69DAAC85148812590057FE34 /* ABOUT.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC82148812590057FE34 /* ABOUT.txt */; };
 		69DAAC86148812590057FE34 /* App Icon (iPhone).png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC83148812590057FE34 /* App Icon (iPhone).png */; };
 		69DAAC87148812590057FE34 /* App Icon (iPhone)@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAAC84148812590057FE34 /* App Icon (iPhone)@2x.png */; };
+		69DAAC8E148845870057FE34 /* TAAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DAAC8D148845870057FE34 /* TAAnalytics.m */; };
 		69DAACA3148847770057FE34 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DAAC98148847770057FE34 /* libFlurryAnalytics.a */; };
 		69DAACB614884A140057FE34 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69DAACB514884A140057FE34 /* DefaultPreferences.plist */; };
-		69DAAC8E148845870057FE34 /* TAAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DAAC8D148845870057FE34 /* TAAnalytics.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,9 @@
 		695F2A8A1475C8CA007EBA17 /* TALocationTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TALocationTracking.h; sourceTree = "<group>"; };
 		695F2A8B1475C8CA007EBA17 /* TALocationTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TALocationTracking.m; sourceTree = "<group>"; };
 		695F2A8E1475CBFF007EBA17 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		697740E11489CC9F00E38BDD /* Search Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Background.png"; sourceTree = "<group>"; };
+		697740E41489CCA900E38BDD /* Results Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Results Background.png"; sourceTree = "<group>"; };
+		697740E51489CCA900E38BDD /* Results Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Results Background@2x.png"; sourceTree = "<group>"; };
 		698AF5731475D1DB0032B278 /* TADestinationGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADestinationGeocoder.h; sourceTree = "<group>"; };
 		698AF5741475D1DB0032B278 /* TADestinationGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADestinationGeocoder.m; sourceTree = "<group>"; };
 		698AF5771475D2060032B278 /* TADestinationGeocoderStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADestinationGeocoderStatus.h; sourceTree = "<group>"; };
@@ -117,11 +123,11 @@
 		69DAAC82148812590057FE34 /* ABOUT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ABOUT.txt; sourceTree = "<group>"; };
 		69DAAC83148812590057FE34 /* App Icon (iPhone).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon (iPhone).png"; sourceTree = "<group>"; };
 		69DAAC84148812590057FE34 /* App Icon (iPhone)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon (iPhone)@2x.png"; sourceTree = "<group>"; };
+		69DAAC8C148845870057FE34 /* TAAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnalytics.h; sourceTree = "<group>"; };
+		69DAAC8D148845870057FE34 /* TAAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAnalytics.m; sourceTree = "<group>"; };
 		69DAAC97148847770057FE34 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		69DAAC98148847770057FE34 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		69DAACB514884A140057FE34 /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
-		69DAAC8C148845870057FE34 /* TAAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnalytics.h; sourceTree = "<group>"; };
-		69DAAC8D148845870057FE34 /* TAAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAnalytics.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,8 @@
 				69DAAC511486C7A10057FE34 /* Direct@2x.png */,
 				69DAAC521486C7A10057FE34 /* I-90.png */,
 				69DAAC531486C7A10057FE34 /* I-90@2x.png */,
+				697740E41489CCA900E38BDD /* Results Background.png */,
+				697740E51489CCA900E38BDD /* Results Background@2x.png */,
 				69DAAC541486C7A10057FE34 /* WA-520.png */,
 				69DAAC551486C7A10057FE34 /* WA-520@2x.png */,
 			);
@@ -170,6 +178,7 @@
 				698AF6BD147AEA580032B278 /* 184-warning-white@2x.png */,
 				698AF6BE147AEA580032B278 /* 184-warning.png */,
 				698AF6BF147AEA580032B278 /* 184-warning@2x.png */,
+				697740E11489CC9F00E38BDD /* Search Background.png */,
 				695F2A7F1475B248007EBA17 /* Search Background@2x.png */,
 			);
 			path = Search;
@@ -445,6 +454,9 @@
 				69DAAC86148812590057FE34 /* App Icon (iPhone).png in Resources */,
 				69DAAC87148812590057FE34 /* App Icon (iPhone)@2x.png in Resources */,
 				69DAACB614884A140057FE34 /* DefaultPreferences.plist in Resources */,
+				697740E21489CC9F00E38BDD /* Search Background.png in Resources */,
+				697740E61489CCA900E38BDD /* Results Background.png in Resources */,
+				697740E71489CCA900E38BDD /* Results Background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

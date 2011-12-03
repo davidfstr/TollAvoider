@@ -102,6 +102,9 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
     // Configure navigation item
     self.navigationItem.title = @"Results";
     
+    // Make table transparent
+    tableView.backgroundColor = [UIColor clearColor];
+    
     // Configure row height
     TAResultsTableViewCell *anyCell = wa520Cell;
     [tableView setRowHeight:anyCell.frame.size.height];
