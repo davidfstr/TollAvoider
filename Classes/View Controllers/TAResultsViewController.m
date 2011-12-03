@@ -176,11 +176,11 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
     
     if (displayingError) {
         if (directRequest.status == TADirectionsError) {
-            errorCell.label2.text = @"Error while searching for routes.";
-            errorCell.label3.text = @"Check your internet connection.";
+            errorCell.label1.text = @"Error finding routes.";
+            errorCell.label2.text = @"Check internet connection.";
         } else if (directRequest.status == TADirectionsZeroResults) {
-            errorCell.label2.text = @"No routes found.";
-            errorCell.label3.text = @"";
+            errorCell.label1.text = @"No routes found.";
+            errorCell.label2.text = @"";
         }
     } else {
         if (directRequest.status == TADirectionsOK) {
@@ -274,9 +274,32 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
     return self.sections.count;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)sectionIndex {
-    return [self.sectionNames objectAtIndex:sectionIndex];
+// Use a custom header view solely to force the text color to black
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)sectionIndex {
+	NSString *titleForHeader = [self.sectionNames objectAtIndex:sectionIndex];
+    
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)] autorelease];
+	
+	CGFloat yOffset = 8.0;
+    UILabel *headerLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+	headerLabel.backgroundColor = [UIColor clearColor];
+	headerLabel.opaque = NO;
+	headerLabel.textColor = [UIColor blackColor];
+	headerLabel.highlightedTextColor = [UIColor whiteColor];
+	headerLabel.font = [UIFont boldSystemFontOfSize:16];
+	headerLabel.frame = CGRectMake(20.0, 0.0 + yOffset, 300.0, 44.0 - yOffset);
+    
+	headerLabel.text = titleForHeader;
+	[headerView addSubview:headerLabel];
+    
+	return headerView;
 }
+
+- (CGFloat) tableView:(UITableView *)theTableView heightForHeaderInSection:(NSInteger)sectionIndex {
+    UIView *headerView = [self tableView:theTableView viewForHeaderInSection:sectionIndex];
+    return headerView.frame.size.height;
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex {
     NSArray *section = [self.sections objectAtIndex:sectionIndex];
