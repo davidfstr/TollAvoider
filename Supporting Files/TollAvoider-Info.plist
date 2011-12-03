@@ -5,7 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Avoid 520</string>
+	<string>Avoid 520 Toll</string>
+	<key>CFBundleDisplayName~ipad</key>
+	<string>520 Toll Avoider</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
