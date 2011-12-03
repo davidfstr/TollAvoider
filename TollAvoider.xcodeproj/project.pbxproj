@@ -576,6 +576,7 @@
 		6997BD831473202F00F8C96F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Other Sources/TollAvoider-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/TollAvoider-Info.plist";
@@ -585,6 +586,7 @@
 					"\"$(SRCROOT)/Libraries/Flurry iPhone SDK v3/FlurryAppCircle\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
