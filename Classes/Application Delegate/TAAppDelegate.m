@@ -68,6 +68,12 @@
     [window addSubview:navController.view];
     [window makeKeyAndVisible];
     
+    // Configure navigation bar to be orange
+    navController.navigationBar.tintColor = [UIColor colorWithRed:.96   // 245
+                                                            green:.40   // 102
+                                                             blue:.10   // 25
+                                                            alpha:1.0];
+    
     return YES;
 }
 
