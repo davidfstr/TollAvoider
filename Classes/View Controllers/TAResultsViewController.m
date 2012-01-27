@@ -234,10 +234,13 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
                 }
             }
             
+            // NOTE: Twitter contest disabled as of 2012-01-27.
+            /*
             // Show Twitter button if Twitter available
             if ([TAResultsViewController twitterAvailable]) {
                 [self setTweetSectionHidden:NO];
             }
+             */
             
             // If direct route does not offer an alternative that crosses a bridge,
             // do not display any bridge routes
