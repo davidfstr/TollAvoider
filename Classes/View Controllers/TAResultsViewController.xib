@@ -149,7 +149,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Tweet for a chance to win toll credit!</string>
+						<string key="IBUIText">Tell your friends. Tweet Me!</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC4xNTAyMDUyOTIAA</bytes>
@@ -295,11 +295,11 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="213546597"/>
 							<reference ref="714723514"/>
 							<reference ref="858439575"/>
 							<reference ref="11586076"/>
 							<reference ref="239110751"/>
+							<reference ref="213546597"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

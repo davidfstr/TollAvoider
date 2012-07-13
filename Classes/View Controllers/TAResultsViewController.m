@@ -27,7 +27,7 @@
 
 #pragma mark - Init
 
-static NSString *TWEET_DEFAULT_MESSAGE = @"@TollAvoider is giving away free WA-520 toll credits. RT with #tollpocalypse to win!";
+static NSString *TWEET_DEFAULT_MESSAGE = @"I survived #tollpocalypse using @TollAvoider!";
 static NSString *TWEET_DEFAULT_URL_STRING = @"http://bit.ly/avoid520";
 
 static NSString *WA520_WAYPOINT_NAME = @"WA-520 Bridge, Seattle, WA";
@@ -235,12 +235,12 @@ static CLLocationCoordinate2D I90W_WAYPOINT = (CLLocationCoordinate2D) { 47.590,
             }
             
             // NOTE: Twitter contest disabled as of 2012-01-27.
-            /*
+            
             // Show Twitter button if Twitter available
             if ([TAResultsViewController twitterAvailable]) {
                 [self setTweetSectionHidden:NO];
             }
-             */
+             
             
             // If direct route does not offer an alternative that crosses a bridge,
             // do not display any bridge routes
