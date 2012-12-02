@@ -3,7 +3,7 @@
 //  TollAvoider
 //
 //  Created by David Foster on 11/22/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Seabalt Solutions, LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
